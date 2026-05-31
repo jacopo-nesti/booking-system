@@ -1,0 +1,19 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+.env
+
+instance/
+
+*.db
+database/app.db
+
+.vscode/
+.idea/
+
+.DS_Store
+
+# Windows system files
+desktop.ini
