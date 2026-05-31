@@ -245,8 +245,8 @@ Le prenotazioni sono salvate con:
 booking_system/
 │
 ├── app/
-│   ├── __init__.py        # app Flask per inizializzazione
-│   ├── routes.py
+│   ├── __init__.py        # crea app
+│   ├── routes.py          # endpoint
 │   ├── models.py          # logica database
 │   ├── config.py          # configurazioni (DB, secret key, etc.)
 │   ├── services.py        # logica business slot, prenotazioni
@@ -272,7 +272,7 @@ booking_system/
 │   └── app.db
 │
 ├── requirements.txt
-├── run.py
+├── run.py                 # avvio server
 ├── .env                   # variabili segrete (password DB, ecc.)
 ├── README.md
 └── roadmap.md
