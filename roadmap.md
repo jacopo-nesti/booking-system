@@ -242,15 +242,16 @@ Le prenotazioni sono salvate con:
 
 ## Struttura
 
-booking_system/
+booking-system/
 │
 ├── app/
-│   ├── __init__.py        # crea app
-│   ├── routes.py          # endpoint
-│   ├── models.py          # logica database
-│   ├── config.py          # configurazioni (DB, secret key, etc.)
-│   ├── services.py        # logica business slot, prenotazioni
-│   ├── database.py        # connessione SQLite
+│   ├── __init__.py          # crea Flask app
+│   ├── config.py            # configurazioni (DB path, secret key, ecc.)
+│   ├── routes.py            # endpoint HTTP
+│   ├── services.py          # logica business (booking system)
+│   ├── models.py            # definizione entità (concettuale o SQL helpers)
+│   ├── database.py          # connessione + query + init_db
+│   ├── utils.py             # funzioni riutilizzabili
 │   │
 │   ├── templates/
 │   │   ├── index.html
@@ -265,14 +266,28 @@ booking_system/
 │   │   │   └── script.js
 │   │   └── images/
 │   │
-│   └── utils/
-│       └── helpers.py    # per funzioni generiche e riutilizzabili
+│   └── database/
+│       └── app.db           # database SQLite
 │
-├── database/
-│   └── app.db
-│
+├── run.py                   # entry point
 ├── requirements.txt
-├── run.py                 # avvio server
-├── .env                   # variabili segrete (password DB, ecc.)
+├── .gitignore
+├── .env
 ├── README.md
 └── roadmap.md
+
+### Spiegazione struttura
+
+- config.py: configurazione centralizzata che contiene DB path, SECRET_KEY, eventuali parametri (orari base, email config)
+- models.py: struttura dati
+- database.py: accesso a SQLite che contiene connect(), init_db(), query SELECT/INSERT e funzioni tipo (get_trattamenti(), get_bookings_by_date())
+- services.py: cuore del progetto che contiene create_booking(), get_available_slots(), check_overlap(), apply_business_rules()
+- routes.py: collegamento HTTP
+- utils.py: funzioni riutilizzabili come email validation, add minutes, overlap check, format date/time
+
+Quindi:
+routes --> “cosa succede quando l’utente clicca”
+services --> “come funziona il sistema booking”
+database --> “come salvo/leggo dati”
+utils --> “strumenti”
+config --> “parametri globali”
