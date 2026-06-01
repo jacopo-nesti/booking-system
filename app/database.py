@@ -63,6 +63,14 @@ def add_treatments(service_name, category, duration_min):
     conn.commit()
     conn.close()
 
+# query SELECT/GET treatments by id
+def get_treatment_by_id(treatment_id):
+    conn = get_db_connection()
+    row = conn.execute('SELECT * FROM treatments WHERE id = ?',
+                        (treatment_id,)).fetchone()
+    conn.close()
+    return dict(row) if row else None
+
 # query SELECT/GET bookings
 def get_bookings():
     conn = get_db_connection()

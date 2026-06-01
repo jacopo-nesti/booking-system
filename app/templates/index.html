@@ -1,9 +1,10 @@
-<h1>Treatments</h1>
+<h1>Trattamenti disponibili</h1>
 
 <ul>
   {% for t in treatments %}
     <li>
-      {{ t.service_name }} - {{ t.duration_min }} min
+      {{t.id}} - {{ t.service_name }} - {{ t.duration_min }} min
+      <a href="/availability/{{ t.id }}">Seleziona</a>
     </li>
   {% endfor %}
 </ul>

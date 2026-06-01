@@ -349,3 +349,9 @@ Se la risposta è:
 - HTTP → routes.py
 - Business → services.py
 - SQLite → database.py
+
+## Template Jinja
+
+Permette di scrivere HTML e inserire dati che arrivano dal backend.
+- {{esempio}} --> stampa esempio
+- {% esempio %} --> esegue una logica (for, if, etc.)
