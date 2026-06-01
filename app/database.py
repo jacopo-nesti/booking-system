@@ -1,10 +1,3 @@
-# database.py si relazione con SQLite quindi deve ottemperare a:
-#   - connessione - connect()
-#   - init_db() --> inizializza db (crea file app.db se non esite, crea tabelle, prepara il db per essere usato)
-#   - create tables
-#   - query SELECT/INSERT
-#   - funzioni tipo get_trattamenti(), get_bookings_by_date()
-
 import sqlite3
 import os
 

@@ -282,7 +282,7 @@ booking-system/
 
 - config.py: configurazione centralizzata che contiene DB path, SECRET_KEY, eventuali parametri (orari base, email config)
 - models.py: struttura dati
-- database.py: accesso a SQLite che contiene connect(), init_db(), query SELECT/INSERT e funzioni tipo (get_trattamenti(), get_bookings_by_date())
+- database.py: accesso a SQLite che contiene connect(), init_db(), create tables, query SELECT/INSERT e funzioni tipo (get_trattamenti(), get_bookings_by_date())
 - services.py: cuore del progetto che contiene create_booking(), get_available_slots(), check_overlap(), apply_business_rules()
 - routes.py: collegamento HTTP
 - utils.py: funzioni riutilizzabili come email validation, add minutes, overlap check, format date/time
