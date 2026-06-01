@@ -5,3 +5,17 @@
     Categoria: {{ treatment.category }} <br>
     Durata: {{ treatment.duration_min }}
 </p>
+
+<p>Inserisci i tuoi dati personali per prenotare il trattamento</p>
+
+<form action="/book" method="POST">
+
+    <input type="text" name="name" placeholder="Nome" required>
+    <input type="text" name="surname" placeholder="Cognome" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="date" name="booking_date" placeholder="Data" required>
+    <input type="time" name="booking_time" placeholder="Orario" required>
+    <input type="hidden" name="treatment_id" value="{{ treatment.id }}">
+
+    <button type="submit">Conferma prenotazione</button>
+</form> 
