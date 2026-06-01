@@ -53,11 +53,11 @@ Volendo, in una seconda fase:
 
 **Tabella trattamenti (servizi offerti)**
 
-| Campo  | Tipo       |      
-| ------ | ---------- |
-| id     | INTEGER PK |
-| nome   | TEXT       |
-| durata | INTEGER    |         
+| Campo    | Tipo       |      
+| ------   | ---------- |
+| id       | INTEGER PK |
+| name     | TEXT       |
+| duration | INTEGER    |         
 
 Esempio
 
@@ -72,12 +72,12 @@ Esempio
 | Campo          | Tipo       |
 | -------------- | ---------- |
 | id             | INTEGER PK |
-| nome           | TEXT       |
-| cognome        | TEXT       |
+| name           | TEXT       |
+| surname        | TEXT       |
 | email          | TEXT       |
-| data           | DATE       |
-| ora            | TIME       |
-| trattamento_id | INTEGER FK |
+| date           | DATE       |
+| time           | TIME       |
+| treatment_id   | INTEGER FK |
 
 Esempio
 
@@ -91,8 +91,8 @@ Tabella utenti (da fare quando implemento login e registrazione con Flask-Login)
 | Campo         | Tipo        |
 | ------------- | ----------- |
 | id            | INTEGER PK  |
-| nome          | TEXT        |
-| cognome       | TEXT        |
+| name          | TEXT        |
+| surname       | TEXT        |
 | email         | TEXT UNIQUE |
 | password_hash | TEXT        |
 
@@ -276,6 +276,8 @@ booking-system/
 ├── README.md
 └── roadmap.md
 
+---
+
 ### Spiegazione struttura
 
 - config.py: configurazione centralizzata che contiene DB path, SECRET_KEY, eventuali parametri (orari base, email config)
@@ -291,3 +293,59 @@ services --> “come funziona il sistema booking”
 database --> “come salvo/leggo dati”
 utils --> “strumenti”
 config --> “parametri globali”
+
+---
+
+## Flusso di lavoro
+
+* Frontend mostra i dati. 
+* L'utente seleziona e prenota "trattamento colorazione il 15 giugno 2026 alle ore 09:00". 
+* Il frontend raccoglie l'input utente e invia la richiesta al backend.
+* routes.py riceve le richieste HTTP (es. POST /book) quindi riceve un JSON con i dati della prenotazione.
+* services.py deve validare la richiesta:
+  - recupera la durata del trattamento,
+  - calcola start_time & end_time
+  - verifica le condizioni di: apertura, chisura, pausa pranzo e sovrapposizioni
+  - se è ok --> salva la prenotazione
+* database.py si relaziona con SQLite:
+  - es. riceve get_treatment_by_id() --> fa SELECT
+  - es. riceve insert_booking() --> fa INSERT
+* utils.py esegue delle piccole funzioni riutilizzabili come:
+  - is_valid_email()
+  - add_minutes()
+  - intervals_overlap()
+  - format_datetime()
+* config.py relativo alle configurazioni come db_path & secret_key
+
+---
+
+## Ordine di sviluppo
+
+1. Flask funzionante
+2. database.py:
+   - connessione
+   - init_db
+   - create tables
+3. Scrivere treatments
+4. Funzioni database
+   - get_treatments()
+   - insert_booking()
+   - get_bookings_by_date()
+5. Route homepage: mostrare trattamenti
+6. Creazione prenotazione semplice (senza controlli complessi)
+7. Motore disponibilità (overlap, pause, ecc.)
+8. Admin dashboard
+9.  Email
+10. Refactoring e frontend migliore
+
+---
+
+## Domanda
+
+"Questo codice riguarda HTTP, logica business o database?"
+
+Se la risposta è:
+
+- HTTP → routes.py
+- Business → services.py
+- SQLite → database.py
