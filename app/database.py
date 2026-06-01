@@ -37,7 +37,7 @@ def init_db():
         email TEXT NOT NULL,
         booking_date TEXT NOT NULL,
         booking_time TEXT NOT NULL,
-        treatment_id INTEGER NOT NULL
+        treatment_id INTEGER NOT NULL,
         FOREIGN KEY (treatment_id) REFERENCES treatments(id)
         )
         """)
@@ -48,6 +48,7 @@ def init_db():
 # apre connesione al db ogni volta che serve
 def get_db_connection():
     conn = sqlite3.connect(db_path)
+    conn.execute("PRAGMA foreign_keys = ON")
     conn.row_factory = sqlite3.Row # così accedo alle colonne come dizionario
     return conn
 

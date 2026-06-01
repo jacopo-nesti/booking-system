@@ -5,7 +5,7 @@ def create_app():
 
     app.config['SECRET_KEY'] = 'dev'
 
-    from .routes import main
+    from app.routes import main
     app.register_blueprint(main)
 
     return app

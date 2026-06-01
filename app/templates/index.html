@@ -1,0 +1,9 @@
+<h1>Treatments</h1>
+
+<ul>
+  {% for t in treatments %}
+    <li>
+      {{ t.service_name }} - {{ t.duration_min }} min
+    </li>
+  {% endfor %}
+</ul>
