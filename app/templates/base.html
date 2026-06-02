@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="IT">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>{% block title %}Booking System{% endblock %}</title>
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+
+    <body>
+
+    <header>
+        <h2>My Booking System</h2>
+        <hr>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <hr>
+        <p>
+            © 2026 Booking System by
+            <a class="site-link" 
+            href="https://github.com/jacopo-nesti" 
+            target="_blank" 
+            rel="noopener noreferrer">
+                Jacopo
+            </a>
+        </p>
+    </footer>
+
+    </body>
+</html>

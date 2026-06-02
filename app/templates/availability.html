@@ -1,3 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}
+Disponibilità
+{% endblock %}
+
+{% block content %}
+
 <h1>Slot Disponibili</h1>
 
 <h3>Data: {{ booking_date }}</h3>
@@ -11,3 +19,5 @@
     </li>
   {% endfor %}
 </ul>
+
+{% endblock %}

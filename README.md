@@ -10,11 +10,11 @@ Web application for managing appointment bookings for a barber shop using Flask 
 
 ## Features (MVP)
 
-- booking creation
-- treatment selection
-- time slot validation
-- admin dashboard
-- email confirmation
+- booking creation (done!)
+- treatment selection (done!)
+- time slot validation (done!)
+- admin dashboard (work in progress)
+- email confirmation (work in progress)
 
 ---
 
