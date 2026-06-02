@@ -2,6 +2,8 @@
 
 ![Python](https://img.shields.io/badge/Python-3.10-blue)
 ![Flask](https://img.shields.io/badge/Flask-web%20framework-black)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Status](https://img.shields.io/badge/status-active-success)
 
 ---
 
@@ -37,9 +39,9 @@ The system also includes a restricted admin area, accessible only to the busines
 
 | Layer    | Stack                         |
 | -------- | ----------------------------- |
-| Backend  | Python 3.10+, Flask 3, Jinja2 |
+| Backend  | Python 3.10+, Flask 3         |
 | Database | SQLite (`sqlite3`)            |
-| Frontend | HTML, CSS                     |
+| Frontend | HTML, CSS, Jinja2             |
 | Security | *Work in progress*            |
 
 ---
