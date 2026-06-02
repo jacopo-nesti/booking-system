@@ -110,7 +110,7 @@ booking-system/
 
 ## Installation and Setup
 
-Refer to the [Installation Guide](/INSTALLAZIONE.md) for detailed setup instructions.
+Refer to the [Installation Guide](/INSTALLATION.md) for detailed setup instructions.
 
 ---
 
