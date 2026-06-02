@@ -1,0 +1,17 @@
+<h1>Conferma prenotazione</h1>
+
+<p>Data: {{ booking_date }}</p>
+<p>Ora: {{ booking_time }}</p>
+
+<form method="POST" action="/book">
+
+    <input type="hidden" name="booking_date" value="{{ booking_date }}">
+    <input type="hidden" name="booking_time" value="{{ booking_time }}">
+    <input type="hidden" name="treatment_id" value="{{ treatment_id }}">
+
+    <input type="text" name="name" placeholder="Nome" required>
+    <input type="text" name="surname" placeholder="Cognome" required>
+    <input type="email" name="email" placeholder="Email" required>
+
+    <button type="submit">Conferma prenotazione</button>
+</form>

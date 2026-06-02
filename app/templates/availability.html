@@ -1,21 +1,13 @@
-<h1>Dettaglio trattamento</h1>
+<h1>Slot Disponibili</h1>
 
-<p>
-    Nome: {{ treatment.service_name }} <br>
-    Categoria: {{ treatment.category }} <br>
-    Durata: {{ treatment.duration_min }}
-</p>
+<h3>Data: {{ booking_date }}</h3>
 
-<p>Inserisci i tuoi dati personali per prenotare il trattamento</p>
-
-<form action="/book" method="POST">
-
-    <input type="text" name="name" placeholder="Nome" required>
-    <input type="text" name="surname" placeholder="Cognome" required>
-    <input type="email" name="email" placeholder="Email" required>
-    <input type="date" name="booking_date" placeholder="Data" required>
-    <input type="time" name="booking_time" placeholder="Orario" required>
-    <input type="hidden" name="treatment_id" value="{{ treatment.id }}">
-
-    <button type="submit">Conferma prenotazione</button>
-</form> 
+<ul>
+  {% for slot in slots %}
+    <li>
+      <a href="/book?booking_date={{ booking_date }}&booking_time={{ slot }}&treatment_id={{ treatment_id }}">
+        {{ slot }}
+      </a>
+    </li>
+  {% endfor %}
+</ul>

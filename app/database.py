@@ -92,7 +92,7 @@ def add_bookings(name, surname, email, booking_date, booking_time, treatment_id)
 # query SELECT/GET bookings by data
 def get_bookings_by_date(date):
     conn = get_db_connection()
-    rows = conn.execute('SELECT * FROM bookings HWERE booking_date = ?',
-                        (date,).fetchall())
+    rows = conn.execute('SELECT * FROM bookings WHERE booking_date = ?',
+                        (date,)).fetchall()
     conn.close()
     return [dict(row) for row in rows]

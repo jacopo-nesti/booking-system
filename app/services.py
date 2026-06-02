@@ -1,14 +1,11 @@
-# Regole del sistema (importanti per gestione prenotazioni)
-
+# Regole del sistema
 # - Apertura: 09:00 - 18:00
 # - Pausa pranzo: 13:00 - 14:00
 # - Chiuso: domenica e lunedì
 # - Ogni trattamento ha una durata
 # - Un appuntamento occupa il tempo necessario alla sua durata
 
-# Gestione prenotazioni
-
-# Algoritmo semplificato:
+# Gestione prenotazioni - Algoritmo semplificato:
 # 1. Provo uno start_time (es. 09:00)
 # 2. Calcolo: end_time = start_time + durata
 # 3. Controllo 3 cose:
@@ -17,19 +14,17 @@
 #    C. Collide con prenotazioni esistenti? Se si --> non prenotabile
 #     - In questo caso devo verificare: start < existing_end AND end > existing_start
 
-
-# treatment_id = x minuti
-# slot teorici disponibili 
-# escludere gli slot impossibili
-# escludere gli slot occupati
-
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 from app.config import (OPENING_TIME, CLOSING_TIME, LUNCH_START, LUNCH_END, SLOT_DURATION, CLOSED_DAYS)
 from app.database import get_bookings_by_date
 
 # controlla se il salone è aperto in una determinata data
 def is_business_open(booking_date):
     selected_date = datetime.strptime(booking_date, "%Y-%m-%d")
+    # blocco date passate
+    if selected_date.date() < date.today():
+        return False
+    # blocco le date che vanno nei giorni di chisura
     if selected_date.weekday() in CLOSED_DAYS:   # weekday(): 0 = lunedì, 6 = domenica
         return False
     return True
@@ -70,22 +65,20 @@ def get_treatment_duration(treatment_id):
     # - non supera orario di chiusura
     # - non si sovrappone alla pausa pranzo
 def is_slot_valid(slot_time, duration):
-    SLOT_DURATION = datetime.strptime(slot_time, "%H:%M")
-
-    # calcolo fine appuntamento
-    end_time = SLOT_DURATION + timedelta(minutes=duration)
+    slot_start = datetime.strptime(slot_time, "%H:%M")
+    end_time = slot_start + timedelta(minutes=duration)
 
     lunch_start = datetime.strptime(LUNCH_START, "%H:%M")
     lunch_end = datetime.strptime(LUNCH_END, "%H:%M")
 
-    CLOSING_TIME = datetime.strptime(CLOSING_TIME, "%H:%M")
+    closing_time = datetime.strptime(CLOSING_TIME, "%H:%M")
 
     # 1. supera chiusura
-    if end_time > CLOSING_TIME:
+    if end_time > closing_time:
         return False
     
     # 2. entra nella pausa pranzo
-    if SLOT_DURATION < lunch_end and end_time > lunch_start:
+    if slot_start < lunch_end and end_time > lunch_start:
         return False
     return True
 
@@ -105,11 +98,18 @@ def overlap_conflict(slot_start, slot_end, bookings):
         # overlap check
         if slot_start < b_end and slot_end > b_start:
             return True
-        return False
+        
+    return False
     
 
 # Genera tutti gli slot disponibili per una data e trattamento (filtra giorni chiusi e slot non validi)
 def get_available_slots(booking_date, treatment_id):
+
+        # funzione per verificare che le date non siano passate al giorno presente
+    def is_past_date(booking_date):
+        selected_date = datetime.strptime(booking_date, "%Y-%m-%d").date()
+        today = datetime.today().date()
+        return selected_date < today
 
     # se il salone è chiuso → nessuno slot disponibile
     if not is_business_open(booking_date):
@@ -130,11 +130,11 @@ def get_available_slots(booking_date, treatment_id):
         slot_end = slot_start + timedelta(minutes=duration)
 
         # regola base
-        if is_slot_valid(slot, duration):
+        if not is_slot_valid(slot, duration):
             continue
 
         # conflitti DB
-        if overlap_conflict(slot, slot.strftime("%H:%M"), bookings):
+        if overlap_conflict(slot, slot_end.strftime("%H:%M"), bookings):
             continue
             
         valid_slots.append(slot)

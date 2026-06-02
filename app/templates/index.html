@@ -1,10 +1,25 @@
-<h1>Trattamenti disponibili</h1>
+<h1>Prenota un appuntamento</h1>
 
-<ul>
-  {% for t in treatments %}
-    <li>
-      {{t.id}} - {{ t.service_name }} - {{ t.duration_min }} min
-      <a href="/availability/{{ t.id }}">Seleziona</a>
-    </li>
-  {% endfor %}
-</ul>
+<form action="/availability" method="GET">
+
+    <label>Trattamento</label>
+    <select name="treatment_id" required>
+        {% for t in treatments %}
+            <option value="{{ t.id }}">
+                {{ t.service_name }} ({{ t.duration_min }} min)
+            </option>
+        {% endfor %}
+    </select>
+
+    <br><br>
+
+    <label>Data</label>
+    <input type="date" name="booking_date" required>
+
+    <br><br>
+
+    <button type="submit">
+        Cerca disponibilità
+    </button>
+
+</form>

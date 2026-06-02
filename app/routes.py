@@ -1,5 +1,6 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, redirect
 from app.database import get_treatments, get_treatment_by_id, add_bookings
+from app.services import get_available_slots
 
 main = Blueprint('main', __name__)
 
@@ -9,20 +10,52 @@ def home_page():
     treatments = get_treatments()
     return render_template("index.html", treatments=treatments)
 
-@main.route("/availability/<int:treatment_id>")
-def availability_page(treatment_id):
-    treatment = get_treatment_by_id(treatment_id)
-    if not treatment:
-        return "Trattamento non trovato", 404
-    return render_template("availability.html", treatment=treatment)
+@main.route("/book", methods=["GET", "POST"])
+def book_page():
+    if request.method == "POST":
+        name = request.form.get("name")
+        surname = request.form.get("surname")
+        email = request.form.get("email")
+        booking_date = request.form.get("booking_date")
+        booking_time = request.form.get("booking_time")
+        treatment_id = request.form.get("treatment_id")
+        add_bookings(
+            name, 
+            surname, 
+            email, 
+            booking_date, 
+            booking_time, 
+            treatment_id
+        )
+        return render_template("success.html")
+    
+    booking_date = request.args.get("booking_date")
+    booking_time = request.args.get("booking_time")
+    treatment_id = request.args.get("treatment_id")
 
-@main.route("/book", methods=["POST"])
-def book():
-    name = request.form["name"]
-    surname = request.form["surname"]
-    email = request.form["email"]
-    booking_date = request.form["booking_date"]
-    booking_time = request.form["booking_time"]
-    treatment_id = request.form["treatment_id"]
-    add_bookings(name, surname, email, booking_date, booking_time, treatment_id)
-    return "Prenotazione salvata con successo! A presto!"
+    treatment = get_treatment_by_id(treatment_id)
+
+    return render_template(
+        "book.html",
+        booking_date=booking_date,
+        booking_time=booking_time,
+        treatment=treatment,
+        treatment_id=treatment_id
+    )
+
+@main.route("/availability")
+def availability_redirect():
+    booking_date = request.args.get("booking_date")
+    treatment_id = request.args.get("treatment_id")
+    return redirect(f"/availability/{booking_date}/{treatment_id}")
+
+@main.route("/availability/<booking_date>/<int:treatment_id>")
+def availability(booking_date, treatment_id):
+    slots = get_available_slots(booking_date, treatment_id)
+
+    return render_template(
+        "availability.html",
+        slots=slots,
+        booking_date=booking_date,
+        treatment_id=treatment_id
+        )

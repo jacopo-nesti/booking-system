@@ -335,7 +335,7 @@ config --> “parametri globali”
 6. Creazione prenotazione semplice (senza controlli complessi)
 7. Motore disponibilità (overlap, pause, ecc.)
 8. Admin dashboard
-9.  Email
+9. Email
 10. Refactoring e frontend migliore
 
 ---
