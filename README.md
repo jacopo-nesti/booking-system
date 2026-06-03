@@ -74,11 +74,7 @@ For the project structure, refer to the [Structure](/docs/STRUCTURE.md) file.
 
 ## Installation and Setup
 
-<<<<<<< HEAD
 Refer to the [Installation Guide](/docs/INSTALLATION.md) for detailed setup instructions.
-=======
-Refer to the [Installation Guide](/INSTALLATION.md) for detailed setup instructions.
->>>>>>> 2b9458a8fcd9f27871702cb2548db04fe52b34fb
 
 ---
 
