@@ -249,3 +249,77 @@ footer p {
 .contact-box li {
     margin-bottom: 8px;
 }
+
+/* BOOK - PAGINA PRENOTAZIONE */
+.booking-title {
+    font-size: 2.4rem;
+    margin-bottom: 10px;
+}
+
+.booking-date,
+.booking-time {
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+/* INTERAZIONE */
+.interaction-title {
+    font-size: 1.5rem;
+}
+
+.interaction-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.interaction-option {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    cursor: pointer;
+}
+
+.interaction-radio {
+    margin-right: 8px;
+}
+
+.interaction-label {
+    font-size: 1.1rem;
+}
+
+/* FORM */
+.booking-form {
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-input {
+    padding: 14px;
+    font-size: 1.1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+/* BOTTONE */
+.confirm-button {
+    margin-top: 10px;
+    padding: 14px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+}
+
+.confirm-button:hover {
+    background-color: #2980b9;
+}

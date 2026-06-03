@@ -32,6 +32,7 @@ def init_db():
         booking_date TEXT NOT NULL,
         booking_time TEXT NOT NULL,
         treatment_id INTEGER NOT NULL,
+        interaction_level TEXT NOT NULL,
         FOREIGN KEY (treatment_id) REFERENCES treatments(id)
         )
         """)
@@ -80,12 +81,12 @@ def get_bookings():
     return [dict(row) for row in rows]
 
 # query INSERT bookings
-def add_bookings(name, surname, email, booking_date, booking_time, treatment_id):
+def add_bookings(name, surname, email, booking_date, booking_time, treatment_id, interaction_level):
     conn = get_db_connection()
     conn.execute(
-        """INSERT INTO bookings (name, surname, email, booking_date, booking_time, treatment_id) 
-        VALUES (?,?,?,?,?,?)""",
-        (name, surname, email, booking_date, booking_time, treatment_id)
+        """INSERT INTO bookings (name, surname, email, booking_date, booking_time, treatment_id, interaction_level) 
+        VALUES (?,?,?,?,?,?,?)""",
+        (name, surname, email, booking_date, booking_time, treatment_id, interaction_level)
     )
     conn.commit()
     conn.close()

@@ -6,22 +6,83 @@ Prenotazione
 
 {% block content %}
 
-<h1>Conferma prenotazione</h1>
+<h1 class="booking-title">Conferma prenotazione</h1>
 
-<p>Data: {{ booking_date }}</p>
-<p>Ora: {{ booking_time }}</p>
 
-<form method="POST" action="/book">
+<p class="booking-date">
+    Data: {{ booking_date }}
+</p>
+
+<p class="booking-time">
+    Ora: {{ booking_time }}
+</p>
+
+<br>
+
+<form class="booking-form" method="POST" action="/book">
+
+<h3 class="interaction-title">
+    Preferenza di interazione durante il servizio
+</h3>
+
+<div class="interaction-options">
+
+    <label class="interaction-option">
+        <input
+            class="interaction-radio"
+            type="radio"
+            name="interaction_level"
+            value="minimal"
+            required
+        >
+        <strong class="interaction-label">
+            Minima interazione ⮕
+        </strong>
+        Il professionista si concentra sul servizio e pone solo le domande necessarie.
+    </label>
+
+    <label class="interaction-option">
+        <input
+            class="interaction-radio"
+            type="radio"
+            name="interaction_level"
+            value="medium"
+            required
+        >
+        <strong class="interaction-label">
+            Media interazione ⮕
+        </strong>
+        Conversazione occasionale e spiegazioni quando utili al trattamento.
+    </label>
+
+    <label class="interaction-option">
+        <input
+            class="interaction-radio"
+            type="radio"
+            name="interaction_level"
+            value="maximum"
+            required
+        >
+        <strong class="interaction-label">
+            Massima interazione ⮕
+        </strong>
+        Ambiente informale e conversazione libera durante l'appuntamento.
+    </label>
+
+</div>
+
+<br><hr><br>
 
     <input type="hidden" name="booking_date" value="{{ booking_date }}">
     <input type="hidden" name="booking_time" value="{{ booking_time }}">
     <input type="hidden" name="treatment_id" value="{{ treatment_id }}">
 
-    <input type="text" name="name" placeholder="Nome" required>
-    <input type="text" name="surname" placeholder="Cognome" required>
-    <input type="email" name="email" placeholder="Email" required>
+    <input class="form-input" type="text" name="name" placeholder="Nome" required>
+    <input class="form-input" type="text" name="surname" placeholder="Cognome" required>
+    <input class="form-input" type="email" name="email" placeholder="Email" required>
 
-    <button type="submit">Conferma prenotazione</button>
+    <button class="confirm-button" type="submit">Conferma prenotazione</button>
+
 </form>
 
 {% endblock %}
