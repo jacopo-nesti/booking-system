@@ -8,26 +8,26 @@ def seed_treatments():
 
     if count == 0:
         treatments_seed = [
-            ("Taglio Uomo", "Uomo", 30),
-            ("Taglio Uomo + Shampoo", "Uomo", 45),
-            ("Taglio Donna", "Donna", 45),
-            ("Taglio Donna + Piega", "Donna", 75),
-            ("Piega", "Donna", 45),
-            ("Shampoo", "Unisex", 15),
-            ("Barba", "Uomo", 15),
-            ("Colore Ricrescita", "Donna", 60),
-            ("Colore Completo", "Donna", 90),
-            ("Tonalizzazione", "Donna", 30),
-            ("Meches", "Donna", 120),
-            ("Trattamento Ricostruzione", "Unisex", 45),
-            ("Cheratina", "Unisex", 180),
-            ("Acconciatura Cerimonia", "Donna", 120)
+            ("Taglio Uomo", "Uomo", 30, 25.00),
+            ("Taglio Uomo + Shampoo", "Uomo", 45, 30.00),
+            ("Taglio Donna", "Donna", 45, 50.00),
+            ("Taglio Donna + Piega", "Donna", 75, 75.00),
+            ("Piega", "Donna", 45, 25.00),
+            ("Shampoo", "Unisex", 15, 8.00),
+            ("Barba", "Uomo", 15, 12.00),
+            ("Colore Ricrescita", "Donna", 60, 55.00),
+            ("Colore Completo", "Donna", 90, 80.00),
+            ("Tonalizzazione", "Donna", 30, 25.00),
+            ("Meches", "Donna", 120, 110.00),
+            ("Trattamento Ricostruzione", "Unisex", 45, 35.00),
+            ("Cheratina", "Unisex", 180, 180.00),
+            ("Acconciatura Cerimonia", "Donna", 120, 100.00),
         ]
         
         cursor.executemany(
             """
-            INSERT INTO treatments (service_name, category, duration_min)
-            VALUES (?, ?, ?)
+            INSERT INTO treatments (service_name, category, duration_min, price)
+            VALUES (?, ?, ?, ?)
             """,
             treatments_seed
         )

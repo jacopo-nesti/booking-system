@@ -11,18 +11,28 @@
 
     <body>
 
-    <header>
-        <h2>My Booking System</h2>
-        <hr>
+    <header id="app-header">
+
+        <div class="header-container">
+            <div class="logo-area">
+                <h1 class="logo-text">
+                    💈 Barber Booking System
+               </h1>
+            </div>
+
+            <nav class="main-nav">
+                <a href="/">Home</a>  <!--DA DEFINIRE HOMEPAGE-->
+            </nav>
+        </div>
+
     </header>
 
-    <main>
+    <main id="page-container">
         {% block content %}
         {% endblock %}
     </main>
 
-    <footer>
-        <hr>
+    <footer id="app-footer">
         <p>
             © 2026 Booking System by
             <a class="site-link" 

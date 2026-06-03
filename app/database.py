@@ -17,7 +17,8 @@ def init_db():
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         service_name TEXT UNIQUE NOT NULL,
         category TEXT NOT NULL,
-        duration_min INTEGER NOT NULL
+        duration_min INTEGER NOT NULL,
+        price TEXT NOT NULL
         )
         """)
     
@@ -53,12 +54,12 @@ def get_treatments():
     return [dict(row) for row in rows]
 
 # query INSERT treatments
-def add_treatments(service_name, category, duration_min):
+def add_treatments(service_name, category, duration_min, price):
     conn = get_db_connection()
     conn.execute(
-        """INSERT INTO treatments (service_name, category, duration_min) 
-        VALUES (?,?,?)""",
-        (service_name, category, duration_min)
+        """INSERT INTO treatments (service_name, category, duration_min, price) 
+        VALUES (?,?,?,?)""",
+        (service_name, category, duration_min, price)
     )
     conn.commit()
     conn.close()

@@ -7,22 +7,50 @@ Home
 {% block content %}
 
 <h1>Prenota un appuntamento</h1>
+<br><hr><br>
+<h2>Seleziona un trattamento</h2>
 
 <form action="/availability" method="GET">
 
-    <label>Trattamento</label>
-    <select name="treatment_id" required>
+    <div class="card-container">
+
         {% for t in treatments %}
-            <option value="{{ t.id }}">
-                {{ t.service_name }} ({{ t.duration_min }} min)
-            </option>
+
+        <div class="treatment-card">
+
+            <h3>{{ t.service_name }}</h3>
+
+            <p>Durata: {{ t.duration_min }} min</p>
+
+            <p>Prezzo: {{ t.price }} €</p>
+
+            <span class="category">{{ t.category }}</span>
+
+            <label class="select-btn">
+                <input
+                type="radio"
+                name="treatment_id"
+                value="{{ t.id }}"
+                required
+                >
+                Seleziona
+            </label>
+
+        </div>
         {% endfor %}
-    </select>
+
+    </div>
 
     <br><br>
 
-    <label>Data</label>
-    <input type="date" name="booking_date" required>
+    <div class="data-section">
+        <label>Data</label>
+        <input
+        type="date"
+        name="booking_date"
+        required
+        >
+    </div>
 
     <br><br>
 
