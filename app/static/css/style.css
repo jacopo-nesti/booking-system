@@ -6,12 +6,13 @@
 }
 
 /* BODY */
-
 body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     font-family: Inter, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
     background-color: #f5f7fa;
     color: #1f2937;
 }
@@ -20,7 +21,7 @@ body {
 #app-header,
 header {
     background-color: #ffffff;
-    padding: 1.2rem 2rem;
+    padding: 8px 20px;
     border-bottom: 1px solid #e5e7eb;
     position: sticky;
     top: 0;
@@ -37,7 +38,72 @@ header hr {
     display: none;
 }
 
-/* CONTENUTO PRINCIPALE */
+/* NAVBAR */
+.navbar {
+    display: flex;
+    gap: 25px;
+    padding: 15px 30px;
+    background: white;
+}
+
+/* HOMEPAGE */
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    color: #666;
+    font-size: 24px;
+    line-height: 1.5;
+}
+
+/* CTA BUTTON */
+.cta-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 22px;
+    background: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.cta-button:hover {
+    background: #2980b9;
+}
+
+/* INFO SECTION */
+.info-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    padding: 8px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.info-box {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+}
+
+.info-box h3 {
+    margin-bottom: 10px;
+}
+
+/* SELECTION PAGE */
 main {
     flex: 1;
     width: 100%;
@@ -92,6 +158,7 @@ footer p {
 
 }
 
+/* SELECTION PAGE */
 .card-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -148,4 +215,37 @@ footer p {
     border: 1px solid #d1d5db;
     border-radius: 8px;
     width: 100%;
+}
+
+/* CONTACTS PAGE */
+/* Contenitore pagina */
+.contact-container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Titolo */
+.contact-container h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+/* Box informazioni */
+.contact-box {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* Liste */
+.contact-box ul {
+    padding-left: 20px;
+}
+
+.contact-box li {
+    margin-bottom: 8px;
 }

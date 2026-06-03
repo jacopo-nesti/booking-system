@@ -7,8 +7,20 @@ main = Blueprint('main', __name__)
 # route
 @main.route("/")
 def home_page():
+    return render_template("home.html")
+
+@main.route("/dashboard")
+def dashboard_page():
+    return render_template("dashboard.html")
+
+@main.route("/contacts")
+def contacts_page():
+    return render_template("contacts.html")
+
+@main.route("/selection")
+def selection_page():
     treatments = get_treatments()
-    return render_template("index.html", treatments=treatments)
+    return render_template("selection.html", treatments=treatments)
 
 @main.route("/book", methods=["GET", "POST"])
 def book_page():
