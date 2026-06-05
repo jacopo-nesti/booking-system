@@ -31,10 +31,10 @@ def book_page():
         booking_date = request.form.get("booking_date")
         booking_time = request.form.get("booking_time")
         treatment_id = request.form.get("treatment_id")
-        interaction_level = request.form.get("interaction_level")
-
+        interaction_level = request.form.get("interaction_level" , "non specificata")
+        
         if not interaction_level:
-            return render_template("book.html", error="Seleziona una preferenza di interazione.")
+            interaction_level = "non specificata"
         
         add_bookings(
             name, 
@@ -43,7 +43,7 @@ def book_page():
             booking_date, 
             booking_time, 
             treatment_id,
-            interaction_level
+            interaction_level,
         )
         return render_template("success.html")
     
