@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, session, url_for
-from app.database import get_treatments, get_treatment_by_id, add_bookings, create_user, get_user_by_email
+from app.database import get_treatments, get_treatment_by_id, add_bookings, create_user, get_user_by_email, get_bookings_by_user, get_user_by_id
 from app.services import get_available_slots
 from app.auth import (hash_password, verify_password, validate_password, validate_email)
 from app.config import (PASSWORD_ERROR)
@@ -11,11 +11,6 @@ main = Blueprint('main', __name__)
 @main.route("/")
 def home_page():
     return render_template("home.html")
-
-@main.route("/dashboard")
-@login_required
-def dashboard_page():
-    return render_template("dashboard.html")
 
 @main.route("/contacts")
 def contacts_page():
@@ -176,3 +171,16 @@ def login_page():
 def logout_page():
     session.clear()
     return redirect("/")
+
+@main.route("/dashboard")
+@login_required
+def dashboard_page():
+    user_id = session["user_id"]
+
+    user = get_user_by_id(user_id)
+    bookings = get_bookings_by_user(user_id)
+    return render_template(
+        "dashboard.html",
+        user=user,
+        bookings=bookings
+    )

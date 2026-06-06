@@ -1,11 +1,32 @@
 {% extends "base.html" %}
 
 {% block title %}
-Area personale
+Dashboard
 {% endblock %}
 
 {% block content %}
 
-<h1>Work in progress</h1>
+<h1>Benvenuto {{ user.name }}</h1>
+
+<h2>Le tue prenotazione</h2>
+
+{% if bookings %}
+
+    <ul>
+        {% for b in bookings %}
+            <li>
+                <strong>{{ b.booking_date }}</strong> -
+                {{ b.booking_time }} -
+                Trattamento ID: {{ b.treatment_id }} -
+                Interazione: {{ b.interaction_level }}
+            </li>
+        {% endfor %}
+    </ul>
+
+{% else %}
+
+    <p>Non hai ancora prenotazioni.</p>
+
+{% endif %}
 
 {% endblock %}

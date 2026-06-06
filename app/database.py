@@ -148,3 +148,16 @@ def get_user_by_id(user_id):
     if row:
         return dict(row)
     return None
+
+# funzione prenotazioni utente
+def get_bookings_by_user(user_id):
+    conn = get_db_connection()
+
+    rows = conn.execute("""
+        SELECT * FROM bookings 
+        WHERE user_id = ?
+        ORDER_BY booking_date, booking_time""", 
+        (user_id)).fetchall()
+    conn.close()
+
+    return [dict(row) for row in rows]
