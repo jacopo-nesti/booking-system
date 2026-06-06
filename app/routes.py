@@ -3,6 +3,7 @@ from app.database import get_treatments, get_treatment_by_id, add_bookings, crea
 from app.services import get_available_slots
 from app.auth import (hash_password, verify_password, validate_password, validate_email)
 from app.config import (PASSWORD_ERROR)
+from helpers import login_required
 
 main = Blueprint('main', __name__)
 
@@ -12,10 +13,8 @@ def home_page():
     return render_template("home.html")
 
 @main.route("/dashboard")
+@login_required
 def dashboard_page():
-    if "user_id" not in session:
-        return redirect(url_for("main.login_page"))
-                        
     return render_template("dashboard.html")
 
 @main.route("/contacts")
@@ -28,6 +27,7 @@ def selection_page():
     return render_template("selection.html", treatments=treatments)
 
 @main.route("/book", methods=["GET", "POST"])
+@login_required
 def book_page():
     if request.method == "POST":
         user_id = session.get("user_id")
@@ -67,9 +67,11 @@ def book_page():
     )
 
 @main.route("/availability")
+@login_required
 def availability_redirect():
     booking_date = request.args.get("booking_date")
     treatment_id = request.args.get("treatment_id")
+
     return redirect(url_for(
         "main.availability",
         booking_date=booking_date,
@@ -77,6 +79,7 @@ def availability_redirect():
     ))
 
 @main.route("/availability/<booking_date>/<int:treatment_id>")
+@login_required
 def availability(booking_date, treatment_id):
     slots = get_available_slots(booking_date, treatment_id)
 
