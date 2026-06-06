@@ -3,7 +3,7 @@ from app.database import get_treatments, get_treatment_by_id, add_bookings, crea
 from app.services import get_available_slots
 from app.auth import (hash_password, verify_password, validate_password, validate_email)
 from app.config import (PASSWORD_ERROR)
-from helpers import login_required
+from app.helpers import login_required
 
 main = Blueprint('main', __name__)
 
