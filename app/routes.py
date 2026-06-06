@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, session, url_for
-from app.database import get_treatments, get_treatment_by_id, add_bookings, create_user, get_user_by_email, get_bookings_by_user, get_user_by_id, get_all_bookings
+from app.database import get_treatments, get_treatment_by_id, add_bookings, create_user, get_user_by_email, get_bookings_by_user, get_user_by_id, get_all_bookings, create_treatment, update_treatment, delete_treatment
 from app.services import get_available_slots
 from app.auth import (hash_password, verify_password, validate_password, validate_email)
 from app.config import (PASSWORD_ERROR)
@@ -161,7 +161,7 @@ def login_page():
         session["name"] = user["name"]
 
         if user["role"] == "admin":
-            return redirect(url_for("main.admin_page"))
+            return redirect(url_for("main.admin_dashboard"))
         else:
             return redirect(url_for("main.dashboard_page"))
         
@@ -188,10 +188,75 @@ def dashboard_page():
 
 @main.route("/admin/dashboard")
 @admin_required
-def admin_page():
+def admin_dashboard():
     bookings = get_all_bookings()
 
     return render_template(
         "admin_dashboard.html",
         bookings=bookings
         )
+
+@main.route("/admin/treatments")
+@admin_required
+def admin_treatments():
+    treatments = get_treatments()
+
+    return render_template(
+        "admin_treatments.html",
+        treatments=treatments
+        )
+
+@main.route("/admin/treatments/create", methods=["GET", "POST"])
+@admin_required
+def create_treatment_page():
+    if request.method == "POST":
+        service_name = request.form.get("service_name")
+        duration_min = int(request.form.get("duration_min"))
+        price = float(request.form.get("price"))
+        category = request.form.get("category")
+
+        create_treatment(
+            service_name,
+            duration_min,
+            price,
+            category
+        )
+
+        return redirect(url_for("main.admin_treatments"))
+    
+    return render_template("create_treatment.html")
+
+@main.route("/admin/treatments/edit/<int:treatment_id>", methods=["GET", "POST"])
+@admin_required
+def edit_treatment_page(treatment_id):
+    if request.method == "GET":
+        treatment = get_treatment_by_id(treatment_id)
+
+        return render_template(
+            "edit_treatment.html",
+            treatment=treatment
+        )
+    
+    if request.method == "POST":
+        service_name = request.form.get("service_name")
+        duration_min = int(request.form.get("duration_min"))
+        price = float(request.form.get("price"))
+        category = request.form.get("category")
+
+        update_treatment(
+            treatment_id,
+            service_name,
+            duration_min,
+            price,
+            category
+        )
+        print("UPDATE FUNZIONA")
+        return redirect(url_for("main.admin_treatments"))
+    
+@main.route("/admin/treatments/delete/<int:treatment_id>", methods=["POST"])
+@admin_required
+def delete_treatment_page(treatment_id):
+
+    delete_treatment(treatment_id)
+
+    return redirect("/admin/treatments")

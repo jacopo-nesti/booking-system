@@ -168,10 +168,10 @@ def get_all_bookings():
 
     rows = conn.execute("""
         SELECT 
-        bookings.*,
-        users.name,
-        users.surname,
-        users.email,
+            bookings.*,
+            users.name,
+            users.surname,
+            users.email
         FROM bookings
         JOIN users ON bookings.user_id = users.id
         ORDER BY booking_date DESC, booking_time DESC
@@ -180,3 +180,49 @@ def get_all_bookings():
     conn.close
     
     return [dict(row) for row in rows]
+
+# funzione admin CREATE treatment
+def create_treatment(service_name, duration_min, price, category):
+    conn = get_db_connection()
+
+    conn.execute("""
+        INSERT INTO treatments (
+            service_name,
+            duration_min,
+            price,
+            category
+        )
+        VALUES (?,?,?,?)
+    """, (service_name, duration_min, price, category))
+
+    conn.commit()
+    conn.close()
+
+# funzione admin UPDATE treatment
+def update_treatment(treatment_id, service_name, duration_min, price, category):
+    conn = get_db_connection()
+
+    conn.execute("""
+        UPDATE treatments
+        SET
+            service_name = ?,
+            duration_min = ?,
+            price = ?,
+            category = ?
+        WHERE id = ?
+    """, (service_name, duration_min, price, category, treatment_id))
+
+    conn.commit()
+    conn.close()
+
+# funzione admin DELETE TREATMENT
+def delete_treatment(treatment_id):
+    conn = get_db_connection()
+
+    conn.execute("""
+        DELETE FROM treatments
+        WHERE id = ? 
+    """, (treatment_id,))
+
+    conn.commit()
+    conn.close()

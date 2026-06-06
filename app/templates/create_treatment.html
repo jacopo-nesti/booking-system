@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+
+<h1>Dashboard Admin</h1>
+
+<h2>Nuovo trattamento</h1>
+
+<form method="POST">
+
+    <input
+        type="text"
+        name="service_name"
+        placeholder="Nome trattamento"
+        required
+    >
+
+    <input
+        type="number"
+        name="duration_min"
+        placeholder="Durata"
+        required
+    >
+
+    <input
+        type="number"
+        step="0.01"
+        name="price"
+        placeholder="Prezzo"
+        required
+    >
+
+    <input
+        type="text"
+        name="category"
+        placeholder="Categoria"
+        required
+    >
+
+    <button type="submit">
+        Salva
+    </button>
+
+</form>
+
+{% endblock %}
