@@ -1,9 +1,9 @@
 from flask import Blueprint, render_template, request, redirect, session, url_for
-from app.database import get_treatments, get_treatment_by_id, add_bookings, create_user, get_user_by_email, get_bookings_by_user, get_user_by_id
+from app.database import get_treatments, get_treatment_by_id, add_bookings, create_user, get_user_by_email, get_bookings_by_user, get_user_by_id, get_all_bookings
 from app.services import get_available_slots
 from app.auth import (hash_password, verify_password, validate_password, validate_email)
 from app.config import (PASSWORD_ERROR)
-from app.helpers import login_required
+from app.helpers import login_required, admin_required
 
 main = Blueprint('main', __name__)
 
@@ -185,3 +185,13 @@ def dashboard_page():
         user=user,
         bookings=bookings
     )
+
+@main.route("/admin/dashboard")
+@admin_required
+def admin_page():
+    bookings = get_all_bookings()
+
+    return render_template(
+        "admin_dashboard.html",
+        bookings=bookings
+        )

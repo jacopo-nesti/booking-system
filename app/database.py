@@ -161,3 +161,22 @@ def get_bookings_by_user(user_id):
     conn.close()
 
     return [dict(row) for row in rows]
+
+# funzione GET all bookings
+def get_all_bookings():
+    conn = get_db_connection()
+
+    rows = conn.execute("""
+        SELECT 
+        bookings.*,
+        users.name,
+        users.surname,
+        users.email,
+        FROM bookings
+        JOIN users ON bookings.user_id = users.id
+        ORDER BY booking_date DESC, booking_time DESC
+    """).fetchall()
+
+    conn.close
+    
+    return [dict(row) for row in rows]

@@ -8,3 +8,16 @@ def login_required(f):
             return redirect(url_for("main.login_page"))
         return f(*args, **kwargs)
     return decorated_function
+
+def admin_required(f):
+    @wraps(f)
+    def wrapper(*args, **kwargs):
+        if "user_id" not in session:
+            return redirect(url_for("main.login_page"))
+        
+        if session.get("role") != "admin":
+            return "Accesso negato", 403
+        
+        return f(*args, **kwargs)
+    
+    return wrapper

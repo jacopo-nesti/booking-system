@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+
+<h1>Dashboard Admin</h1>
+
+<h2>Tutte le prenotazioni</h2>
+
+{% for b in bookings %}
+
+<div class="booking-card">
+
+    <p><strong>Cliente:</strong> {{ b.name }} {{ b.surname }}</p>
+    <p><strong>Email:</strong> {{ b.email }}</p>
+
+    <p><strong>Data:</strong> {{ b.booking_date }}</p>
+    <p><strong>Ora:</strong> {{ b.booking_time }}</p>
+
+    <p><strong>Trattamento ID:</strong> {{ b.treatment_id }}</p>
+    <p><strong>Interazione:</strong> {{ b.interaction_level }}</p>
+
+</div>
+
+<hr>
+
+{% endfor %}
+
+{% endblock %}
