@@ -10,3 +10,8 @@ SLOT_DURATION = 30
 # 0 = lunedi
 # 6 = domenica
 CLOSED_DAYS = (0,6)
+
+PASSWORD_ERROR = (
+    "Password non valida - La password deve essere lunga almeno 8 caratteri "
+    "e contenere almeno una maiuscola, una minuscola e un numero"
+)

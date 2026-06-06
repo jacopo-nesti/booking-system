@@ -1,6 +1,8 @@
-from flask import Blueprint, render_template, request, redirect
-from app.database import get_treatments, get_treatment_by_id, add_bookings
+from flask import Blueprint, render_template, request, redirect, session, url_for
+from app.database import get_treatments, get_treatment_by_id, add_bookings, create_user, get_user_by_email
 from app.services import get_available_slots
+from app.auth import (hash_password, verify_password, validate_password, validate_email)
+from app.config import (PASSWORD_ERROR)
 
 main = Blueprint('main', __name__)
 
@@ -11,6 +13,9 @@ def home_page():
 
 @main.route("/dashboard")
 def dashboard_page():
+    if "user_id" not in session:
+        return redirect(url_for("main.login_page"))
+                        
     return render_template("dashboard.html")
 
 @main.route("/contacts")
@@ -25,21 +30,21 @@ def selection_page():
 @main.route("/book", methods=["GET", "POST"])
 def book_page():
     if request.method == "POST":
-        name = request.form.get("name")
-        surname = request.form.get("surname")
-        email = request.form.get("email")
+        user_id = session.get("user_id")
+
+        if not user_id:
+            return redirect(url_for("main.login_page"))
+        
         booking_date = request.form.get("booking_date")
         booking_time = request.form.get("booking_time")
         treatment_id = request.form.get("treatment_id")
-        interaction_level = request.form.get("interaction_level" , "non specificata")
+        interaction_level = request.form.get("interaction_level")
         
         if not interaction_level:
             interaction_level = "non specificata"
         
         add_bookings(
-            name, 
-            surname, 
-            email, 
+            user_id, 
             booking_date, 
             booking_time, 
             treatment_id,
@@ -65,7 +70,11 @@ def book_page():
 def availability_redirect():
     booking_date = request.args.get("booking_date")
     treatment_id = request.args.get("treatment_id")
-    return redirect(f"/availability/{booking_date}/{treatment_id}")
+    return redirect(url_for(
+        "main.availability",
+        booking_date=booking_date,
+        treatment_id=treatment_id
+    ))
 
 @main.route("/availability/<booking_date>/<int:treatment_id>")
 def availability(booking_date, treatment_id):
@@ -77,3 +86,90 @@ def availability(booking_date, treatment_id):
         booking_date=booking_date,
         treatment_id=treatment_id
         )
+
+@main.route("/register", methods=["GET", "POST"])
+def register_page():
+    if request.method == "POST":
+        name = request.form.get("name")
+        surname = request.form.get("surname")
+        email = request.form.get("email")
+        password = request.form.get("password")
+        
+        if not validate_email(email):
+            return render_template(
+                "register.html",
+                error="Email non valida - inserire una mail valida",
+                email=email
+            )
+        
+        if not validate_password(password):
+            return render_template(
+                "register.html",
+                error=PASSWORD_ERROR,
+                email=email
+            )
+        
+        if get_user_by_email(email):
+            return render_template(
+                "register.html",
+                error="Email già registrata",
+                email=email
+            )
+        
+        password_hash = hash_password(password)
+
+        create_user(
+            name,
+            surname,
+            email,
+            password_hash
+        )
+
+        return redirect(url_for("main.login_page"))
+
+    return render_template("register.html") 
+
+@main.route("/login", methods=["GET", "POST"])
+def login_page():
+    if request.method == "POST":
+        email = request.form.get("email")
+        password = request.form.get("password")
+
+        if not email or not password:
+            return render_template(
+                "login.html", 
+                error="Compila tutti i campi",
+                email=email
+            )
+        
+        user = get_user_by_email(email)
+
+        if not user:
+            return render_template(
+                "login.html",
+                error="Utente non trovato",
+                email=email
+            )
+        
+        if not verify_password(password, user["password_hash"]):
+            return render_template(
+                "login.html",
+                error="Password non valida",
+                email=email
+            )
+        
+        session["user_id"] = user["id"]
+        session["role"] = user["role"]
+        session["name"] = user["name"]
+
+        if user["role"] == "admin":
+            return redirect(url_for("main.admin_page"))
+        else:
+            return redirect(url_for("main.user_page"))
+        
+    return render_template("login.html")
+
+@main.route("/logout")
+def logout_page():
+    session.clear()
+    return redirect("/")
