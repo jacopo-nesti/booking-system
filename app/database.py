@@ -39,13 +39,13 @@ def init_db():
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS bookings (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        user_id INTEGER TEXT NOT NULL,
+        user_id INTEGER NOT NULL,
         booking_date TEXT NOT NULL,
         booking_time TEXT NOT NULL,
         treatment_id INTEGER NOT NULL,
         interaction_level TEXT,
                    
-        FOREIGN KEY (user_id) REFERENCES user(id),
+        FOREIGN KEY (user_id) REFERENCES users(id),
         FOREIGN KEY (treatment_id) REFERENCES treatments(id)
         )
         """)
@@ -156,8 +156,8 @@ def get_bookings_by_user(user_id):
     rows = conn.execute("""
         SELECT * FROM bookings 
         WHERE user_id = ?
-        ORDER_BY booking_date, booking_time""", 
-        (user_id)).fetchall()
+        ORDER BY booking_date, booking_time""", 
+        (user_id,)).fetchall()
     conn.close()
 
     return [dict(row) for row in rows]

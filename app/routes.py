@@ -163,7 +163,7 @@ def login_page():
         if user["role"] == "admin":
             return redirect(url_for("main.admin_page"))
         else:
-            return redirect(url_for("main.user_page"))
+            return redirect(url_for("main.dashboard_page"))
         
     return render_template("login.html")
 
@@ -179,6 +179,7 @@ def dashboard_page():
 
     user = get_user_by_id(user_id)
     bookings = get_bookings_by_user(user_id)
+    
     return render_template(
         "dashboard.html",
         user=user,
