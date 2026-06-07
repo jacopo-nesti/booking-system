@@ -7,6 +7,7 @@
         <title>{% block title %}Booking System{% endblock %}</title>
 
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     </head>
 
     <body>
@@ -15,19 +16,39 @@
 
         <div class="header-container">
             <div class="logo-area">
-                <h1 class="logo-text">
-                    💈 Barber Booking System
-               </h1>
+                <h1 class="logo-text">Booking System</h1>
+                {% if session.get('user_id') %}
+                <span class="welcome">Sei loggato come {{ session.get('name') }}</span>
+                {% endif %}
             </div>
             
-            <nav class="navbar">
-                <a href="/">Home</a>
-                <a href="/register">Registrazione</a>
-                <a href="/selection">Prenota un appuntamento</a>
-                <a href="/dashboard">Le mie prenotazione</a>
-                <a href="/contacts">Contatti</a>
-            </nav>
-        </div>
+        <nav class="navbar">
+            <a href="{{ url_for('main.home_page') }}">Home</a>
+
+            {% set role = session.get('role') %}
+            {% set user_id = session.get('user_id') %}
+
+            {% if user_id and role != 'admin' %}
+            <!-- USER NORMALE -->
+                <a href="{{ url_for('main.dashboard_page') }}">Area personale</a>
+                <a href="{{ url_for('main.selection_page') }}">Prenota un appuntamento</a>
+                <a href="{{ url_for('main.contacts_page') }}">Contatti</a>
+                <a href="{{ url_for('main.logout_page') }}">Logout</a>
+
+            {% elif user_id and role == 'admin' %}
+            <!-- ADMIN -->
+                <a href="{{ url_for('main.admin_dashboard') }}">Admin Dashboard</a>
+                <a href="{{ url_for('main.admin_treatments') }}">Gestione servizi</a>
+                <a href="{{ url_for('main.logout_page') }}">Logout</a>
+
+            {% else %}
+            <!-- NON LOGGATO -->
+                <a href="{{ url_for('main.login_page') }}">Login</a>
+                <a href="{{ url_for('main.register_page') }}">Registrati</a>
+                <a href="{{ url_for('main.selection_page') }}">Prenota un appuntamento</a>
+                <a href="{{ url_for('main.contacts_page') }}">Contatti</a>
+            {% endif %}
+        </nav>
 
     </header>
 

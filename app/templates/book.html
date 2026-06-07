@@ -66,9 +66,19 @@ Prenotazione
         Ambiente informale e conversazione libera durante l'appuntamento.
     </label>
 
-</div>
+        <label class="interaction-option">
+        <input
+            class="interaction-radio"
+            type="radio"
+            name="interaction_level"
+            value="nessuno"
+        >
+        <strong class="interaction-label">
+            Nessuna preferenza
+        </strong>
+    </label>
 
-<br><hr><br>
+</div>
 
     <input type="hidden" name="booking_date" value="{{ booking_date }}">
     <input type="hidden" name="booking_time" value="{{ booking_time }}">

@@ -10,40 +10,54 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    font-family: Inter, Arial, sans-serif;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
     font-size: 16px;
     line-height: 1.6;
-    background-color: #f5f7fa;
-    color: #1f2937;
+    background-color: #ffffff;
 }
 
 /* HEADER */
-#app-header,
-header {
-    background-color: #ffffff;
-    padding: 8px 20px;
-    border-bottom: 1px solid #e5e7eb;
+#app-header {
+    background-color: #a5e1a5;
+    padding: 6px 15px;
     position: sticky;
     top: 0;
     z-index: 100;
 }
 
-header h2 {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #111827;
+#app-header h1 {
+    margin-left: 50px;
 }
 
-header hr {
-    display: none;
+#app-header span {
+    margin-right: 20px;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
 }
 
 /* NAVBAR */
 .navbar {
     display: flex;
-    gap: 25px;
-    padding: 15px 30px;
-    background: white;
+    justify-content: center;
+    list-style: none;
+    gap: 30px;
+    padding: 6px 15px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.navbar a:hover {
+  color: blue;
 }
 
 /* HOMEPAGE */
@@ -114,19 +128,15 @@ main {
 
 /* FOOTER */
 footer {
-    background-color: #ffffff;
-    border-top: 1px solid #e5e7eb;
+    background-color: #a5e1a5;
     text-align: center;
-    padding: 1.2rem;
-}
-
-footer hr {
-    display: none;
+    padding: 0.5rem;
 }
 
 footer p {
     color: #6b7280;
-    font-size: 0.95rem;
+    font-size: 0.8rem;
+    margin: 0;
 }
 
 /* LINK */
@@ -161,8 +171,8 @@ footer p {
 /* SELECTION PAGE */
 .card-container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
     max-width: 1200px;
     margin: 40px auto;
 }
@@ -196,7 +206,7 @@ footer p {
     font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.2s ease;
+    transition: 0.2s ease;
 }
 
 .select-btn:hover {
@@ -205,23 +215,47 @@ footer p {
 
 .data-section {
     margin-top: 16px;
+    font-size: 18px;
+    font-weight: 700;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    align-items: center;
+    gap: 10px;
 }
 
 .data-section input[type="date"] {
     padding: 10px;
     border: 1px solid #d1d5db;
     border-radius: 8px;
+    font-size: 16px;
     width: 100%;
+    max-width: 320px;
+}
+
+.btn-selection-availability {
+    background: #a5e1a5;
+    padding: 10px 20px;
+    border-radius: 999px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    width: 100%;
+    max-width: 320px;
+}
+
+.btn-selection-availability:hover {
+    background: #00c853;
+    transform: translateY(-2px);
 }
 
 /* CONTACTS PAGE */
 /* Contenitore pagina */
 .contact-container {
     max-width: 700px;
-    margin: 40px auto;
+    margin: 2px auto;
     padding: 20px;
     font-family: Arial, sans-serif;
 }
@@ -229,7 +263,7 @@ footer p {
 /* Titolo */
 .contact-container h1 {
     font-size: 28px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 /* Box informazioni */
@@ -250,21 +284,49 @@ footer p {
     margin-bottom: 8px;
 }
 
+/* Social */
+.social-icons {
+  display: flex;
+  gap: 25px;
+  margin-top: 20px;
+}
+
+.social-btn {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: black;
+  color: white;
+  font-size: 22px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.social-btn:hover {
+  transform: scale(1.1);
+  background: green;
+}
+
 /* BOOK - PAGINA PRENOTAZIONE */
 .booking-title {
-    font-size: 2.4rem;
+    font-size: 1.8rem;
     margin-bottom: 10px;
+    font-weight: 700;
 }
 
 .booking-date,
 .booking-time {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     font-weight: 500;
 }
 
 /* INTERAZIONE */
 .interaction-title {
     font-size: 1.5rem;
+    font-weight: 500;
 }
 
 .interaction-options {
