@@ -6,9 +6,14 @@ Prenotazione confermata
 
 {% block content %}
 
-<h2>Prenotazione salvata con successo</p>
-<p>A presto!</p>
+<div class="success-container">
 
-<button onclick="window.location.href='/'">Ritorna alla homepage</button>
+    <h2>Prenotazione salvata con successo</h2>
+
+    <p>A presto!</p>
+
+    <button onclick="window.location.href='/dashboard'">Controlla le tue prenotazioni</button>
+
+<div>
 
 {% endblock %}

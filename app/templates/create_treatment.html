@@ -4,45 +4,56 @@
 
 {% block content %}
 
-<h1>Dashboard Admin</h1>
+<div class="title-create">
+    <h1>Dashboard Admin</h1>
 
-<h2>Nuovo trattamento</h1>
+    <h2>Inserisci un nuovo trattamento</h2>
+</div>
 
-<form method="POST">
+<div class="create-treatment-container">
+    <form method="POST">
 
-    <input
-        type="text"
-        name="service_name"
-        placeholder="Nome trattamento"
-        required
-    >
+        <div class="creat-treatment-card">
+            <p>Scegli il nome del trattamento</p>
+            <input
+                type="text"
+                name="service_name"
+                placeholder="Nome trattamento"
+                required
+            >
 
-    <input
-        type="number"
-        name="duration_min"
-        placeholder="Durata"
-        required
-    >
+            <p>Scegli la durata del trattamento (in minuti)</p>
+            <input
+                type="number"
+                name="duration_min"
+                placeholder="Durata"
+                required
+            >
 
-    <input
-        type="number"
-        step="0.01"
-        name="price"
-        placeholder="Prezzo"
-        required
-    >
+            <p>Scegli il prezzo del trattamento</p>
+            <input
+                type="number"
+                step="0.50"
+                name="price"
+                placeholder="Prezzo"
+                required
+            >
 
-    <input
-        type="text"
-        name="category"
-        placeholder="Categoria"
-        required
-    >
+            <p>Scegli una categoria del trattamento</p>
+            <input
+                type="text"
+                name="category"
+                placeholder="Categoria"
+                required
+            >
 
-    <button type="submit">
-        Salva
-    </button>
+        </div>
 
-</form>
+        <button class="btn-selection-create" type="submit">
+            Salva
+        </button>
+
+    </form>
+</div>
 
 {% endblock %}

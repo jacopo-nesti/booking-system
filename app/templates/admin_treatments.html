@@ -4,37 +4,38 @@
 
 {% block content %}
 
-<h1>Dashboard Admin</h1>
+<div class="title-create">
+    <h1>Dashboard Admin</h1>
 
-<h2>Modifica un trattamento</h2>
-
-{% for t in treatments %}
-
-<div class="treatment-card">
-
-    <h3>{{ t.service_name }}</h3>
-
-    <p>{{ t.duration_min }} min</p>
-
-    <p>{{ t.price }} €</p>
-
-    <p>{{ t.category }}</p>
-
-    <a href="/admin/treatments/edit/{{ t.id }}">
-        Modifica
-    </a>
-
-    <form
-        method="POST"
-        action="/admin/treatments/delete/{{ t.id }}"
-    >
-        <button type="submit">
-            Elimina
-        </button>
-    </form>
-
+    <h2>Modifica / Elimina un trattamento</h2>
 </div>
 
-{% endfor %}
+<div class="edit-or-delete-treatment-container">
+    {% for t in treatments %}
+
+        <div class="treatment-card">
+
+            <h3>{{ t.service_name }}</h3>
+
+            <p>Durata: {{ t.duration_min }} min</p>
+
+            <p>Prezzo: {{ t.price }} €</p>
+
+            <p>Categoria: {{ t.category }}</p>
+
+            <a href="/admin/treatments/edit/{{ t.id }}">Modifica</a>
+
+            <form method="POST" action="/admin/treatments/delete/{{ t.id }}"
+                onsubmit="return confirm('Sei sicuro di voler eliminare questo trattamento? Questa azione è irreversibile.');">
+                <button type="submit">
+                    Elimina (permanente)
+                </button>
+            </form>
+
+        </div>
+
+    {% endfor %}
+
+</div>
 
 {% endblock %}

@@ -154,10 +154,16 @@ def get_bookings_by_user(user_id):
     conn = get_db_connection()
 
     rows = conn.execute("""
-        SELECT * FROM bookings 
-        WHERE user_id = ?
-        ORDER BY booking_date, booking_time""", 
-        (user_id,)).fetchall()
+        SELECT
+            bookings.*,
+            treatments.service_name
+        FROM bookings
+        JOIN treatments
+            ON bookings.treatment_id = treatments.id
+        WHERE bookings.user_id = ?
+        ORDER BY bookings.booking_date, bookings.booking_time
+    """, (user_id,)).fetchall()
+    
     conn.close()
 
     return [dict(row) for row in rows]

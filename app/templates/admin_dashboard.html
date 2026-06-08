@@ -7,36 +7,38 @@
 <h1>Dashboard Admin</h1>
 
 <!-- BOTTONI CRUD -->
-<div class="admin-actions">
+<div class="admin-container">
 
-    <a href="/admin/treatments" class="admin-btn">
-        Gestisci trattamenti
+    <a href="/admin/treatments" class="admin-dashboard-btn">
+        Modifica / Elimina trattamenti esistenti
     </a>
 
-    <a href="/admin/treatments/create" class="admin-btn">
-        + Nuovo trattamento
+    <a href="/admin/treatments/create" class="admin-dashboard-btn">
+        Aggiungi un nuovo trattamento
     </a>
 
 </div>
 
-<h2>Tutte le prenotazioni</h2>
+<h2 class="dashboard-title-admin">Tutte le prenotazioni</h2>
+
+<div class="dashboard-grid-admin">
 
 {% for b in bookings %}
 
-<div class="booking-card">
+    <div class="dashboard-card-admin">
 
-    <p><strong>Cliente:</strong> {{ b.name }} {{ b.surname }}</p>
-    <p><strong>Email:</strong> {{ b.email }}</p>
+        <p><strong>Cliente:</strong> {{ b.name }} {{ b.surname }}</p>
+        <p><strong>Email:</strong> {{ b.email }}</p>
 
-    <p><strong>Data:</strong> {{ b.booking_date }}</p>
-    <p><strong>Ora:</strong> {{ b.booking_time }}</p>
+        <p><strong>Data:</strong> {{ b.booking_date }}</p>
+        <p><strong>Ora:</strong> {{ b.booking_time }}</p>
 
-    <p><strong>Trattamento ID:</strong> {{ b.treatment_id }}</p>
-    <p><strong>Interazione:</strong> {{ b.interaction_level }}</p>
+        <p><strong>Trattamento ID:</strong> {{ b.treatment_id }}</p>
+        <p><strong>Interazione:</strong> {{ b.interaction_level }}</p>
+
+    </div>
 
 </div>
-
-<hr>
 
 {% endfor %}
 

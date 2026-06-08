@@ -50,14 +50,15 @@ body {
 }
 
 .navbar a {
-  text-decoration: none;
-  color: black;
-  font-weight: 600;
-  transition: 0.3s;
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
+    transition: 0.3s;
+    font-size: 1.1rem;
 }
 
 .navbar a:hover {
-  color: blue;
+    color: blue;
 }
 
 /* HOMEPAGE */
@@ -84,8 +85,8 @@ body {
     display: inline-block;
     margin-top: 20px;
     padding: 12px 22px;
-    background: #3498db;
-    color: white;
+    background: #a5e1a5;
+    color: black;
     text-decoration: none;
     border-radius: 8px;
     font-weight: bold;
@@ -151,23 +152,6 @@ footer p {
     color: #1d4ed8;
 }
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
-
-    header {
-        padding: 1rem;
-    }
-
-    main {
-        padding: 1rem;
-    }
-
-    footer {
-        padding: 1rem;
-    }
-
-}
-
 /* SELECTION PAGE */
 .card-container {
     display: grid;
@@ -201,8 +185,8 @@ footer p {
     padding: 12px;
     border: none;
     border-radius: 10px;
-    background: #2563eb;
-    color: white;
+    background: #a5e1a5;
+    color: black;
     font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
@@ -210,7 +194,7 @@ footer p {
 }
 
 .select-btn:hover {
-    background: #1d4ed8;
+    background: green;
 }
 
 .data-section {
@@ -366,7 +350,7 @@ footer p {
 
 .form-input:focus {
     outline: none;
-    border-color: #3498db;
+    border-color: a5e1a5;
 }
 
 /* BOTTONE */
@@ -377,11 +361,434 @@ footer p {
     font-weight: bold;
     border: none;
     border-radius: 8px;
-    background-color: #3498db;
+    background-color: #a5e1a5;
     color: white;
     cursor: pointer;
 }
 
 .confirm-button:hover {
-    background-color: #2980b9;
+    background-color: green;
+}
+
+/* ERROR MESSAGE */
+.error-message {
+    color: red;
+    padding: 5px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 1.0rem;
+    font-weight: 400;
+}
+
+/* LOGIN */
+.login-title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.login-container form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 1.4rem;
+    font-weight: bold;
+    background: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* DA USARE SIA PER LOGIN.HTML CHE PER REGISTER.HTML */
+.login-container input {
+    display: flex;
+    gap: 20px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 30px;
+    padding: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.login-container input:focus {
+    outline: none;
+    border-color: green;
+    transform: scale(1.1);
+}
+
+.login-container button {
+    font-size: 1.8rem;
+    font-weight: bold;
+    background-color: #a5e1a5;
+    padding: 14px;
+    width: 200px;
+    border: none;
+    border-radius: 8px;
+    color: none;
+    cursor: pointer;
+}
+
+.login-container button:hover {
+    background-color: green;
+}
+
+/* REGISTER */
+.register-title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.register-container form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 1.4rem;
+    font-weight: bold;
+    background: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.register-container input {
+    display: flex;
+    gap: 20px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 30px;
+    padding: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.register-container input:focus {
+    outline: none;
+    border-color: green;
+    transform: scale(1.1);
+}
+
+.register-container button {
+    font-size: 1.8rem;
+    font-weight: bold;
+    background-color: #a5e1a5;
+    padding: 14px;
+    width: 200px;
+    border: none;
+    border-radius: 8px;
+    color: none;
+    cursor: pointer;
+}
+
+.register-container button:hover {
+    background-color: green;
+}
+
+/* PAGINA SUCCESS */
+.success-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 1.4rem;
+    font-weight: bold;
+    background: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.success-container h2 {
+    margin-bottom: 20px;
+}
+
+.success-container p {
+    margin-bottom: 20px;
+}
+
+.success-container button {
+    font-size: 1.8rem;
+    font-weight: bold;
+    background-color: #a5e1a5;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    color: none;
+    cursor: pointer;
+}
+
+.success-container button:hover {
+    background-color: green;
+}
+
+/* USER PAGES */
+/* USER DASHBOARD */
+.dashboard-container {
+    padding: 20px;
+}
+
+.dashboard-header {
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.dashboard-header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+.dashboard-title {
+    margin: 10px 0 15px 0;
+    font-size: 1.3rem;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 15px;
+}
+
+.dashboard-card {
+    background: #ffffff;
+    border-radius: 14px;
+    border: 2px solid #22c55e;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-4px);
+}
+
+.dashboard-empty {
+    margin-top: 15px;
+    color: #6b7280;
+}
+
+/* ADMIN PAGES */
+/* ADMIN DASHBOARD */
+.admin-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: left;
+    padding: 12px 0px;
+    font-weight: 600;
+    max-width: 420px;
+}
+
+.admin-dashboard-btn {
+    font-size: 1.2rem;
+    font-weight: bold;
+    background-color: #a5e1a5;
+    padding: 14px;
+    border: 2px solid #22c55e;;
+    border-radius: 8px;
+    color: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.admin-dashboard-btn:hover {
+    background-color: green;
+}
+
+.dashboard-title-admin {
+    margin: 10px 0 15px 0;
+    font-size: 1.3rem;
+}
+
+.dashboard-grid-admin {
+    gap: 15px;
+}
+
+.dashboard-card-admin {
+    background: #ffffff;
+    border-radius: 14px;
+    border: 2px solid #22c55e;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease;
+    margin-bottom: 10px;
+}
+
+/* ADMIN CREATE TREATMENT */
+.title-create {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    margin-bottom: -15px;
+}
+
+.create-treatment-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px 5px;
+    font-weight: 600;
+    max-width: 700px;
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.create-treatment-container p {
+    margin-top: 25px;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.create-treatment-container input {
+    font-size: 1.2rem;
+    background-color: white;
+    padding: 14px;
+    border: 2px solid #22c55e;;
+    border-radius: 8px;
+    color: black;
+    cursor: pointer;
+    text-decoration: none;
+    width: 100%;
+}
+
+.btn-selection-create {
+    font-size: 1.2rem;
+    margin-top: 20px;
+    font-weight: bold;
+    background-color: #a5e1a5;
+    padding: 14px;
+    width: 200px;
+    border: none;
+    color: black;
+    border-radius: 8px;
+    cursor: pointer;
+    display: block;
+    margin-left: 0;
+}
+
+.btn-selection-create:hover {
+    background-color: green;
+}
+
+/* ADMIN EDIT AND DELETE TREATMENTS */
+.title-create {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    margin-bottom: 5px;
+}
+.edit-or-delete-treatment-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    padding: 12px 5px;
+    font-weight: 600;
+}
+
+.treatment-card {
+    background: #ffffff;
+    border-radius: 14px;
+    border: 2px solid #22c55e;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease;
+}
+
+.treatment-card a {
+    text-decoration: underline;
+    color: blue;
+    font-weight: 700;
+    transition: 0.3s;
+    font-size: 1.1rem;
+}
+
+.treatment-card a:hover {
+    color: green;
+}
+.treatment-card button {
+    font-size: 1.0rem;
+    font-weight: bold;
+    background-color: lightcoral;
+    padding: 14px;
+    width: 200px;
+    border: none;
+    color: black;
+    border-radius: 8px;
+    cursor: pointer;
+    display: block;
+}
+
+.treatment-card button:hover {
+    background-color: red;
+}
+
+/* ADMIN SPECIFIC EDIT TREATMENTS */
+.title-edit-create {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.edit-treatment-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px 5px;
+    font-weight: 600;
+    max-width: 700px;
+}
+
+.edit-treatment-card {
+    font-size: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.edit-treatment-card input {
+    font-size: 1.2rem;
+    background-color: white;
+    padding: 14px;
+    border: 2px solid #22c55e;
+    border-radius: 8px;
+    color: black;
+    text-decoration: none;
+    width: 100%;
+}
+
+.edit-treatment-card button {
+    font-size: 1.2rem;
+    margin-top: 20px;
+    font-weight: bold;
+    background-color: #a5e1a5;
+    padding: 14px;
+    width: 200px;
+    border: none;
+    color: black;
+    border-radius: 8px;
+    cursor: pointer;
+    display: block;
+    margin-left: 0;
+}
+
+.edit-treatment-card button:hover {
+    background-color: green;
 }

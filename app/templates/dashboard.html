@@ -6,27 +6,31 @@ Dashboard
 
 {% block content %}
 
-<h1>Benvenuto {{ user.name }}</h1>
+<div class="dashboard-container">
 
-<h2>Le tue prenotazione</h2>
+    <div class="dashboard-header">
+        <h1>Benvenuto {{ user.name }}</h1>
+    </div>
 
-{% if bookings %}
+    <h2 class="dashboard-title">Le tue prenotazione</h2>
 
-    <ul>
-        {% for b in bookings %}
-            <li>
-                <strong>{{ b.booking_date }}</strong> -
-                {{ b.booking_time }} -
-                Trattamento ID: {{ b.treatment_id }} -
-                Interazione: {{ b.interaction_level }}
-            </li>
-        {% endfor %}
-    </ul>
+    {% if bookings %}
 
-{% else %}
+        <div class="dashboard-grid">
+            {% for b in bookings %}
+            <div class="dashboard-card">
+                    <strong>{{ b.booking_date }} - {{ b.booking_time }}</strong>
+                    <strong>Trattamento: {{ b.service_name }}</strong>
+                    <div>Interazione selezionata: {{ b.interaction_level }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
 
-    <p>Non hai ancora prenotazioni.</p>
+        <p class="dashboard-empty">Non hai ancora prenotazioni.</p>
 
-{% endif %}
+    {% endif %}
+
+</div>
 
 {% endblock %}

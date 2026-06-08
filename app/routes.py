@@ -145,14 +145,14 @@ def login_page():
         if not user:
             return render_template(
                 "login.html",
-                error="Utente non trovato",
+                error="Dati non corretti",
                 email=email
             )
         
         if not verify_password(password, user["password_hash"]):
             return render_template(
                 "login.html",
-                error="Password non valida",
+                error="Dati non corretti",
                 email=email
             )
         
