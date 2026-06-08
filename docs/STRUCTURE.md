@@ -4,41 +4,46 @@
 booking-system/
 │
 ├── app/
-│   ├── __init__.py          # Flask application factory
-│   ├── config.py            # Configuration (DB path, secret key, etc.)
-│   ├── routes.py            # HTTP endpoints
-│   ├── services.py          # Business logic (booking system)
-│   ├── models.py            # Entity definitions (conceptual / SQL helpers)
-│   ├── database.py          # DB connection, queries, and initialization
-│   ├── helpers.py           # Reusable helper functions
-│   ├── seed.py              # Database seeding / initial data setup
+│   ├── __init__.py              # Flask application factory
+│   ├── config.py                # Configuration (DB path, secret key, etc.)
+│   ├── routes.py                # HTTP routes (Blueprint)
+│   ├── services.py              # Business logic (availability, booking rules)
+│   ├── models.py                # Data models (conceptual / SQL helpers)
+│   ├── database.py             # DB connection, queries, initialization
+│   ├── helpers.py              # Utility functions and decorators
+│   ├── seed.py                 # Database seeding / initial data setup
+│   ├── auth.py                 # Authentication and security logic
 │   │
 │   ├── templates/
 │   │   ├── base.html
-│   │   ├── index.html
+│   │   ├── home.html
 │   │   ├── book.html
+│   │   ├── selection.html
 │   │   ├── availability.html
-│   │   ├── success.html
-│   │   ├── admin.html
+│   │   ├── register.html
 │   │   ├── login.html
-│   │   └── dashboard.html
+│   │   ├── success.html
+│   │   ├── dashboard.html
+│   │   ├── admin_dashboard.html
+│   │   ├── admin_treatments.html
+│   │   ├── create_treatment.html
+│   │   ├── edit_treatment.html
+│   │   └── contacts.html
 │   │
 │   ├── static/
 │   │   ├── css/
 │   │   │   └── style.css
 │   │   ├── js/
-│   │   │   └── script.js
+│   │   │
 │   │   └── images/
 │   │
-│   ├── docs/
+│   └── docs/
 │       ├── roadmap.md
 │       ├── STRUCTURE.md
-│       ├── INSTALLATION.md  # Setup and installation guide
+│       └──  INSTALLATION.md  # Setup and installation guide
 │
 ├── run.py                   # Application entry point
 ├── requirements.txt         # Project dependencies
-├── LICENSE.md               # Project license
 ├── .gitignore
-├── .env
 └── README.md
 ```
