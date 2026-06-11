@@ -26,7 +26,24 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## 4. Run the application
+## 4. Configure environment variables
+Copy the example file and fill in your values:
+```bash
+cp .env.example .env
+```
+Open `.env` and set:
+```
+SECRET_KEY=your_secret_key
+ADMIN_EMAIL=your@email.com
+ADMIN_PASSWORD=your_password
+```
+
+To generate a secure `SECRET_KEY` you can run:
+```bash
+python -c "import secrets; print(secrets.token_hex(32))"
+```
+
+## 5. Run the application
 ```bash
 python run.py
 ```
