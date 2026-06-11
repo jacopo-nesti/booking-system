@@ -92,26 +92,32 @@ def register_page():
         surname = request.form.get("surname")
         email = request.form.get("email")
         password = request.form.get("password")
+
+        form_data = {
+            "name": name,
+            "surname": surname,
+            "email": email
+        }
         
         if not validate_email(email):
             return render_template(
                 "register.html",
                 error="Email non valida - inserire una mail valida",
-                email=email
+                form_data = form_data
             )
         
         if not validate_password(password):
             return render_template(
                 "register.html",
                 error=PASSWORD_ERROR,
-                email=email
+                form_data = form_data
             )
         
         if get_user_by_email(email):
             return render_template(
                 "register.html",
-                error="Email già registrata",
-                email=email
+                error="Email già registrata - mi dispiace",
+                form_data = form_data
             )
         
         password_hash = hash_password(password)
@@ -125,7 +131,7 @@ def register_page():
 
         return redirect(url_for("main.login_page"))
 
-    return render_template("register.html") 
+    return render_template("register.html", form_data={}) 
 
 @main.route("/login", methods=["GET", "POST"])
 def login_page():

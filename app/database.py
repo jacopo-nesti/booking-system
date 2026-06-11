@@ -242,4 +242,3 @@ def execute_query(query, params=[]):
     conn.close()
 
     return risultati
-

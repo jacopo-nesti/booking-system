@@ -10,9 +10,9 @@ Home
 
 <div class="register-container">
     <form method="POST">
-        <input type="text" name="name" placeholder="Nome" required>
-        <input type="text" name="surname" placeholder="Cognome" required>
-        <input type="email" name="email" placeholder="Email" required>
+        <input type="text" name="name" value="{{ form_data.name if form_data else '' }}" placeholder="Nome" required>
+        <input type="text" name="surname" value="{{ form_data.surname if form_data else '' }}" placeholder="Cognome" required>
+        <input type="email" name="email" value="{{ form_data.email if form_data else '' }}" placeholder="Email" required>
         <input type="password" name="password" placeholder="Password" required>
 
     {% if error %}
