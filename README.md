@@ -30,9 +30,8 @@ An admin dashboard provides full control over services and bookings, including c
 - Email validation using standard regex patterns
 - Service and pricing management
 - Availability scheduling and time slot management
-- Admin dashboard for managing users and bookings
-- Booking lifecycle management (pending, confirmed, cancelled)
-- Responsive UI for desktop and mobile use
+- Admin dashboard for managing bookings (add new, remove and modify service)
+- Responsive UI for desktop use
 
 ---
 
