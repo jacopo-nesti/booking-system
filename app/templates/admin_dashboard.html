@@ -23,19 +23,37 @@
 <div class="admin-container">
     <form action="{{ url_for('main.admin_dashboard') }}" method="GET">
         
-        <label>Data specifica</label><input type="date" name="data_specifica" value="{{ request.args.get('data_specifica', '') }}">
+        <label for="data_specifica">Data specifica:</label>
+        <input type="date" id="data_specifica" name="data_specifica" value="{{ request.args.get('data_specifica', '')}}">
         
-        <label>Data Inizio</label><input type="date" name="data_inizio" value="{{ request.args.get('data_inizio', '') }}">
-        <label>Data Fine</label><input type="date" name="data_fine" value="{{ request.args.get('data_fine', '') }}">
+        <label for="data_inizio">Da:</label>
+        <input type="date" id="data_inizio" name="data_inizio" value="{{ request.args.get('data_inizio', '') }}">
         
-        <input type="number" name="id_trattamento" placeholder="ID Trattamento" value="{{ request.args.get('id_trattamento', '') }}">
-
-        <label>Settimana</label><input type="checkbox" name="questa_settimana" value="1" {% if request.args.get('questa_settimana') %}checked{% endif %}>
-        <label>Mese</label><input type="checkbox" name="questo_mese" value="1" {% if request.args.get('questo_mese') %}checked{% endif %}>
-        <label>Più recente</label><input type="checkbox" name="piu_recente" value="1" {% if request.args.get('piu_recente') %}checked{% endif %}>
+        <label for="data_fine">A:</label>
+        <input type="date" id="data_fine" name="data_fine" value="{{ request.args.get('data_fine', '') }}">
+        
+        <label for="id_trattamento">ID Trattamento:</label>
+        <input type="number" id="id_trattamento" name="id_trattamento" placeholder="Es. 3" value="{{ request.args.get('id_trattamento', '') }}">
+        
+        <div class="checkbox-group">
+            <label>
+                <input type="checkbox" name="questa_settimana" value="1" {% if request.args.get('questa_settimana') == '1' %}checked{% endif %}>
+                Questa settimana
+            </label>
+            
+            <label>
+                <input type="checkbox" name="questo_mese" value="1" {% if request.args.get('questo_mese') == '1' %}checked{% endif %}>
+                Questo mese
+            </label>
+            
+            <label>
+                <input type="checkbox" name="piu_recente" value="1" {% if request.args.get('piu_recente') == '1' %}checked{% endif %}>
+                Più recente
+            </label>
+        </div>
 
         <button type="submit" class="admin-dashboard-btn">Filtra</button>
-        <a href="{{ url_for('main.admin_dashboard') }}" class="admin-dashboard-btn">Resetta</a>
+        <a href="{{ url_for('main.admin_dashboard') }}" class="admin-dashboard-btn btn-reset">Resetta</a>
     </form>
 </div>
 
@@ -57,6 +75,12 @@
             <p><strong>Trattamento ID:</strong> {{ b.treatment_id }}</p>
             <p><strong>Interazione:</strong> {{ b.interaction_level }}</p>
 
+        </div>
+
+    {% else %}
+
+        <div class="no-results">
+            <p>Nessuna prenotazione corrisponde ai filtri selezionati.</p>
         </div>
 
     {% endfor %}

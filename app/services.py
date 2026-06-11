@@ -140,7 +140,7 @@ def get_available_slots(booking_date, treatment_id):
 
     return valid_slots
 
-
+# Funzione dell'admin per ordinamento/filtri delle prenotazioni
 def get_filtered_bookings(filters):
     query = """
         SELECT
@@ -160,32 +160,34 @@ def get_filtered_bookings(filters):
 
     params = []
 
-    # 1. Data specifica
+    # Data specifica
     if filters.get('order_by_specific_date'):
         query += " AND bookings.booking_date = ?"
         params.append(filters['order_by_specific_date'])
 
-    # 2. Questa settimana
-    if filters.get('order_for_this_week'):
-        query += " AND strftime('%Y-%W', bookings.booking_date) = strftime('%Y-%W', 'now')"
-
-    # 3. Questo mese
-    if filters.get('order_for_this_month'):
-        query += " AND strftime('%Y-%m', bookings.booking_date) = strftime('%Y-%m', 'now')"
-
-    # 4. Date range
-    if filters.get('order_from_range'):
+     # Date range
+    elif filters.get('order_from_range'):
         query += " AND bookings.booking_date BETWEEN ? AND ?"
         params.append(filters['order_from_range'][0])
         params.append(filters['order_from_range'][1])
 
-    # 5. Filtro per trattamento
+    # Questa settimana
+    elif filters.get('order_for_this_week'):
+        query += " AND strftime('%Y-%W', bookings.booking_date) = strftime('%Y-%W', 'now')"
+
+    # Questo mese
+    elif filters.get('order_for_this_month'):
+        query += " AND strftime('%Y-%m', bookings.booking_date) = strftime('%Y-%m', 'now')"
+
+    # Filtro per trattamento
     if filters.get('filter_by_treatment'):
         query += " AND bookings.treatment_id = ?"
         params.append(filters['filter_by_treatment'])
 
-    # 6. Ordinamento più recente
+    # Ordinamento più recente
     if filters.get('order_from_most_recent'):
-        query += " ORDER BY bookings.booking_date DESC"
+        query += " ORDER BY bookings.booking_date DESC, bookings.booking_time DESC"
+    else:
+        query += " ORDER BY bookings.booking_date ASC, bookings.booking_time ASC"
 
     return execute_query(query, params)

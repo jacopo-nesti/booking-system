@@ -202,20 +202,20 @@ def dashboard_page():
 @admin_required
 def admin_dashboard():
     data_specifica = request.args.get('data_specifica')
-    questa_settimana = request.args.get('questa_settimana')
-    questo_mese = request.args.get('questo_mese')
     id_trattamento = request.args.get('id_trattamento')
-    piu_recente = request.args.get('piu_recente')
-
     data_inizio = request.args.get('data_inizio')
     data_fine = request.args.get('data_fine')
 
+    questa_settimana = request.args.get('questa_settimana') == '1'
+    questo_mese = request.args.get('questo_mese') == '1'
+    piu_recente = request.args.get('piu_recente') == '1'
+
     filters = {
         'order_by_specific_date': data_specifica if data_specifica else None,
-        'order_for_this_week': True if questa_settimana else None,
-        'order_for_this_month': True if questo_mese else None,
+        'order_for_this_week': questa_settimana,
+        'order_for_this_month': questo_mese,
         'filter_by_treatment': id_trattamento if id_trattamento else None,
-        'order_from_most_recent': True if piu_recente else None,
+        'order_from_most_recent': piu_recente,
         'order_from_range': [data_inizio, data_fine] if (data_inizio and data_fine) else None,
     }
 
@@ -280,7 +280,6 @@ def edit_treatment_page(treatment_id):
             price,
             category
         )
-        print("UPDATE FUNZIONA")
         return redirect(url_for("main.admin_treatments"))
     
 @main.route("/admin/treatments/delete/<int:treatment_id>", methods=["POST"])
