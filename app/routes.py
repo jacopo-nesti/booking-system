@@ -138,6 +138,7 @@ def login_page():
     if request.method == "POST":
         email = request.form.get("email")
         password = request.form.get("password")
+        remember = request.form.get("remember")
 
         if not email or not password:
             return render_template(
@@ -165,6 +166,11 @@ def login_page():
         session["user_id"] = user["id"]
         session["role"] = user["role"]
         session["name"] = user["name"]
+
+        if remember:
+            session.permanent = True
+        else:
+            session.permanent = False
 
         if user["role"] == "admin":
             return redirect(url_for("main.admin_dashboard"))

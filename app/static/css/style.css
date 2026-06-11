@@ -26,7 +26,7 @@ body {
 }
 
 #app-header h1 {
-    margin-left: 50px;
+    margin-left: 0px;
 }
 
 #app-header span {
@@ -46,7 +46,7 @@ body {
     justify-content: center;
     list-style: none;
     gap: 30px;
-    padding: 6px 15px;
+    padding: 0px 0px;
 }
 
 .navbar a {
@@ -93,7 +93,7 @@ body {
 }
 
 .cta-button:hover {
-    background: #2980b9;
+    background: green;
 }
 
 /* INFO SECTION */
@@ -391,7 +391,7 @@ footer p {
     font-weight: bold;
 }
 
-.login-container form {
+.login-container {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -403,12 +403,19 @@ footer p {
     margin-bottom: 20px;
 }
 
+.login-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
 /* DA USARE SIA PER LOGIN.HTML CHE PER REGISTER.HTML */
 .login-container input {
     display: flex;
     gap: 20px;
     background: #fff;
-    border: 1px solid #ddd;
+    border: 1.8px solid #ddd;
     border-radius: 30px;
     padding: 20px;
     margin-bottom: 20px;
@@ -419,6 +426,23 @@ footer p {
     outline: none;
     border-color: green;
     transform: scale(1.1);
+}
+
+.login-container label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: normal;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.login-container input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: green;
+    margin: 0;
 }
 
 .login-container button {
@@ -435,6 +459,22 @@ footer p {
 
 .login-container button:hover {
     background-color: green;
+}
+
+.register-link {
+    margin-top: 35px;
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+.register-link a {
+    color: green;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
 }
 
 /* REGISTER */

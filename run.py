@@ -6,6 +6,7 @@ load_dotenv()
 from app import create_app
 from app.database import init_db
 from app.seed import seed_treatments, seed_admin
+from datetime import timedelta
 
 if __name__ == "__main__":
     app = create_app()
@@ -14,5 +15,7 @@ if __name__ == "__main__":
     init_db()
     seed_treatments()
     seed_admin()
+
+    app.permanent_session_lifetime = timedelta(days=3)
 
     app.run(debug=True)
