@@ -174,7 +174,7 @@ body {
  
 #app-footer .site-link {
   font-size: 12px;
-  color: #3a8a3a;
+  color: black;
   text-decoration: none;
   font-weight: 500;
 }
@@ -206,11 +206,9 @@ body {
 
 .treatment-card {
     background: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 16px;
-    padding: 24px;
-    min-height: 220px;
-    min-width: 120px;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 16px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -218,26 +216,33 @@ body {
     transition: all 0.2s ease;
 }
 
-.treatment-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-}
-
 .select-btn {
-    width: 100%;
-    padding: 12px;
-    border: none;
-    border-radius: 10px;
-    background: #5aaa5a;
-    color: black;
-    font-size: 0.95rem;
-    font-weight: 600;
+    display: inline-block;
+    background-color: #5cb85c;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
     cursor: pointer;
-    transition: 0.2s ease;
+    transition: background 0.2s ease;
+    margin-top: 10px;
 }
 
-.select-btn:hover {
-    background: green;
+.select-btn input[type="radio"] {
+    display: none;
+}
+
+.select-btn:has(input[type="radio"]:checked) {
+    background-color: #1b5e20;
+}
+
+.select-btn:has(input[type="radio"]:checked) .btn-text::before {
+    content: "✓ ";
+}
+
+.treatment-card:has(input[type="radio"]:checked) {
+    border: 3px solid #1b5e20;
+    background-color: rgb(223, 255, 223);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .data-section {
@@ -252,7 +257,7 @@ body {
 
 .data-section input[type="date"] {
     padding: 10px;
-    border: 1px solid #d1d5db;
+    border: 2px solid #d1d5db;
     border-radius: 8px;
     font-size: 16px;
     width: 100%;
@@ -260,11 +265,11 @@ body {
 }
 
 .btn-selection-availability {
-    background: #5aaa5a;
+    background: #5cb85c;
     padding: 10px 20px;
     border-radius: 999px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    font-weight: 700;
+    color: white;
     font-size: 16px;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -274,8 +279,50 @@ body {
 }
 
 .btn-selection-availability:hover {
-    background: #00c853;
+    background: green;
     transform: translateY(-2px);
+}
+
+/* PAGINA SLOT DISPONIBILI */
+.slots-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.slot-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background-color: #ffffff;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #333333;
+    font-weight: bold;
+    transition: all 0.2s ease-in-out;
+}
+
+.slot-time {
+    font-size: 1.3rem;
+    color: black;
+    margin-bottom: 6px;
+}
+
+.slot-action {
+    font-size: 0.85rem;
+    color: #5cb85c;
+    font-weight: normal;
+}
+
+.slot-card:hover {
+    border: 4px solid #5cb85c;
+    background-color: #f9fbf9;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 /* CONTACTS PAGE */
@@ -435,13 +482,7 @@ body {
 }
 
 .login-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    font-size: 1.4rem;
-    font-weight: bold;
-    background: #fff;
+    background: #ffffff;
     padding: 20px;
     margin-bottom: 20px;
 }
@@ -450,6 +491,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     width: 100%;
 }
 
@@ -489,11 +531,11 @@ body {
 }
 
 .login-container button {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     font-weight: bold;
     background-color: #5aaa5a;
-    padding: 14px;
-    width: 200px;
+    padding: 10px;
+    width: 100px;
     border: none;
     border-radius: 8px;
     color: none;
@@ -559,11 +601,11 @@ body {
 }
 
 .register-container button {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     font-weight: bold;
     background-color: #5aaa5a;
-    padding: 14px;
-    width: 200px;
+    padding: 10px;
+    width: 120px;
     border: none;
     border-radius: 8px;
     color: none;
@@ -580,7 +622,7 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: bold;
     background: #fff;
     padding: 20px;
@@ -596,7 +638,7 @@ body {
 }
 
 .success-container button {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     font-weight: bold;
     background-color: #5aaa5a;
     padding: 14px;
@@ -901,7 +943,7 @@ body {
     font-weight: 600;
 }
 
-.treatment-card {
+.admin-treatment-card {
     background: #ffffff;
     border-radius: 14px;
     border: 2px solid #22c55e;
@@ -913,7 +955,7 @@ body {
     transition: transform 0.2s ease;
 }
 
-.treatment-card a {
+.admin-treatment-card a {
     text-decoration: underline;
     color: blue;
     font-weight: 700;
@@ -921,11 +963,11 @@ body {
     font-size: 1.0rem;
 }
 
-.treatment-card a:hover {
+.admin-treatment-card a:hover {
     color: green;
 }
 
-.treatment-card button {
+.admin-treatment-card button {
     font-size: 1.0rem;
     font-weight: bold;
     background-color: lightcoral;
@@ -938,7 +980,7 @@ body {
     display: block;
 }
 
-.treatment-card button:hover {
+.admin-treatment-card button:hover {
     background-color: red;
 }
 

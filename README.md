@@ -32,6 +32,7 @@ An admin dashboard provides full control over services and bookings, including c
 - Service and pricing management
 - Availability scheduling and time slot management
 - Admin dashboard for managing bookings (add new, remove and modify service)
+- Advanced admin filtering for bookings and treatments
 - Responsive UI for desktop use
 
 ---
@@ -66,7 +67,7 @@ For the project structure, refer to the [Structure](/docs/STRUCTURE.md) file.
 
 ---
 
-## Screenshot
+## Preview
 
 *Work in progress*
 
@@ -142,11 +143,11 @@ If you'd like to see my roadmap, see [roadmap](/docs/roadmap.md). The file is in
 - Core booking system
 - Authentication system (register/login)
 - Admin dashboard for managing bookings and services
+- Advanced admin filtering for bookings and treatments
 
 ### V2 (user experience improvements)
 - Full user booking history
 - Email verification and notifications
-- Advanced admin filtering for bookings and treatments
 - Password recovery system
 - Password manager
 - Admin can add images to services
@@ -156,3 +157,4 @@ If you'd like to see my roadmap, see [roadmap](/docs/roadmap.md). The file is in
 - Automated cleanup/archiving of past bookings
 - Multi-business / multi-tenant architecture (SaaS evolution)
 - Automated testing suite (unit + integration tests)
+- Improve UI for mobile use

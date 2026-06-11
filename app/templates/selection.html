@@ -15,23 +15,14 @@ Prenotazione
         {% for t in treatments %}
 
         <div class="treatment-card">
-
             <h3>{{ t.service_name }}</h3>
-
             <p>Durata: {{ t.duration_min }} min</p>
-
             <p>Prezzo: {{ t.price }} €</p>
-
-            <span class="category">{{ t.category }}</span>
+            <span>{{ t.category }}</span>
 
             <label class="select-btn">
-                <input
-                type="radio"
-                name="treatment_id"
-                value="{{ t.id }}"
-                required
-                >
-                Seleziona
+                <input type="radio" name="treatment_id" value="{{ t.id }}" required>
+                <span class="btn-text">Seleziona</span>
             </label>
 
         </div>

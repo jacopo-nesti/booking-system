@@ -6,18 +6,20 @@ Disponibilità
 
 {% block content %}
 
-<h1>Slot Disponibili</h1>
+<div class="availability-section">
 
-<h3>Data: {{ booking_date }}</h3>
+  <h1>Slot Disponibili</h1>
+  <h3 class="selected-date">Data selezionata: {{ booking_date }}</h3>
 
-<ul>
-  {% for slot in slots %}
-    <li>
-      <a href="/book?booking_date={{ booking_date }}&booking_time={{ slot }}&treatment_id={{ treatment_id }}">
-        {{ slot }}
-      </a>
-    </li>
-  {% endfor %}
-</ul>
+  <div class="slots-container">
+    {% for slot in slots %}
+        <a class="slot-card" href="/book?booking_date={{ booking_date }}&booking_time={{ slot }}&treatment_id={{ treatment_id }}">
+          <span class="slot-time">{{ slot }}</span>
+          <span class="slot-action">Prenota</span>
+        </a>
+    {% endfor %}
+  </div>
+
+</div>
 
 {% endblock %}
