@@ -1,4 +1,6 @@
-from app.database import get_db_connection, init_db
+from app.database import get_db_connection, init_db, get_user_by_email, create_user
+from app.auth import hash_password
+import os
 
 def seed_treatments():
     conn = get_db_connection()
@@ -39,3 +41,17 @@ def seed_treatments():
         print("Treatments already present, skip seed")
 
     conn.close()
+
+def seed_admin():
+    admin = get_user_by_email(os.getenv("ADMIN_EMAIL"))
+
+    if admin:
+        return
+    
+    create_user(
+        name="Admin",
+        surname="System",
+        email=os.getenv("ADMIN_EMAIL"),
+        password_hash=hash_password(os.getenv("ADMIN_PASSWORD")),
+        role="admin"
+    )
