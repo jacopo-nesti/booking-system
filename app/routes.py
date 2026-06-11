@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, session, url_for
 from app.database import get_treatments, get_treatment_by_id, add_bookings, create_user, get_user_by_email, get_bookings_by_user, get_user_by_id, get_all_bookings, create_treatment, update_treatment, delete_treatment
-from app.services import get_available_slots
+from app.services import get_available_slots, get_filtered_bookings
 from app.auth import (hash_password, verify_password, validate_password, validate_email)
 from app.config import (PASSWORD_ERROR)
 from app.helpers import login_required, admin_required
@@ -189,7 +189,25 @@ def dashboard_page():
 @main.route("/admin/dashboard")
 @admin_required
 def admin_dashboard():
-    bookings = get_all_bookings()
+    data_specifica = request.args.get('data_specifica')
+    questa_settimana = request.args.get('questa_settimana')
+    questo_mese = request.args.get('questo_mese')
+    id_trattamento = request.args.get('id_trattamento')
+    piu_recente = request.args.get('piu_recente')
+
+    data_inizio = request.args.get('data_inizio')
+    data_fine = request.args.get('data_fine')
+
+    filters = {
+        'order_by_specific_date': data_specifica if data_specifica else None,
+        'order_for_this_week': True if questa_settimana else None,
+        'order_for_this_month': True if questo_mese else None,
+        'filter_by_treatment': id_trattamento if id_trattamento else None,
+        'order_from_most_recent': True if piu_recente else None,
+        'order_from_range': [data_inizio, data_fine] if (data_inizio and data_fine) else None,
+    }
+
+    bookings = get_filtered_bookings(filters)
 
     return render_template(
         "admin_dashboard.html",

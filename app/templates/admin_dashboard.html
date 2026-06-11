@@ -19,27 +19,48 @@
 
 </div>
 
-<h2 class="dashboard-title-admin">Tutte le prenotazioni</h2>
+<!-- FILTRI E ORDINAMENTO -->
+<div class="admin-container">
+    <form action="{{ url_for('main.admin_dashboard') }}" method="GET">
+        
+        <label>Data specifica</label><input type="date" name="data_specifica" value="{{ request.args.get('data_specifica', '') }}">
+        
+        <label>Data Inizio</label><input type="date" name="data_inizio" value="{{ request.args.get('data_inizio', '') }}">
+        <label>Data Fine</label><input type="date" name="data_fine" value="{{ request.args.get('data_fine', '') }}">
+        
+        <input type="number" name="id_trattamento" placeholder="ID Trattamento" value="{{ request.args.get('id_trattamento', '') }}">
+
+        <label>Settimana</label><input type="checkbox" name="questa_settimana" value="1" {% if request.args.get('questa_settimana') %}checked{% endif %}>
+        <label>Mese</label><input type="checkbox" name="questo_mese" value="1" {% if request.args.get('questo_mese') %}checked{% endif %}>
+        <label>Più recente</label><input type="checkbox" name="piu_recente" value="1" {% if request.args.get('piu_recente') %}checked{% endif %}>
+
+        <button type="submit" class="admin-dashboard-btn">Filtra</button>
+        <a href="{{ url_for('main.admin_dashboard') }}" class="admin-dashboard-btn">Resetta</a>
+    </form>
+</div>
+
+<h2 class="dashboard-title-admin">Prenotazioni utenti</h2>
 
 <div class="dashboard-grid-admin">
 
-{% for b in bookings %}
+    {% for b in bookings %}
 
-    <div class="dashboard-card-admin">
+        <div class="dashboard-card-admin">
 
-        <p><strong>Cliente:</strong> {{ b.name }} {{ b.surname }}</p>
-        <p><strong>Email:</strong> {{ b.email }}</p>
+            <p><strong>Nome:</strong> {{ b.name }}</p>
+            <p><strong>Cognome:</strong> {{ b.surname }}</p>
+            <p><strong>Email:</strong> {{ b.email }}</p>
 
-        <p><strong>Data:</strong> {{ b.booking_date }}</p>
-        <p><strong>Ora:</strong> {{ b.booking_time }}</p>
+            <p><strong>Data:</strong> {{ b.booking_date }}</p>
+            <p><strong>Ora:</strong> {{ b.booking_time }}</p>
 
-        <p><strong>Trattamento ID:</strong> {{ b.treatment_id }}</p>
-        <p><strong>Interazione:</strong> {{ b.interaction_level }}</p>
+            <p><strong>Trattamento ID:</strong> {{ b.treatment_id }}</p>
+            <p><strong>Interazione:</strong> {{ b.interaction_level }}</p>
 
-    </div>
+        </div>
+
+    {% endfor %}
 
 </div>
-
-{% endfor %}
 
 {% endblock %}

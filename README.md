@@ -148,6 +148,8 @@ If you'd like to see my roadmap, see [roadmap](/docs/roadmap.md). The file is in
 - Email verification and notifications
 - Advanced admin filtering for bookings and treatments
 - Password recovery system
+- Password manager
+- Admin can add images to services
 
 ### V3 (scalability & monetization)
 - Online payment integration

@@ -373,6 +373,7 @@ footer p {
 /* ERROR MESSAGE */
 .error-message {
     color: red;
+    max-width: 450px;
     padding: 5px;
     margin-top: 0px;
     margin-bottom: 10px;
@@ -608,7 +609,9 @@ footer p {
 }
 
 .dashboard-grid-admin {
-    gap: 15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
 }
 
 .dashboard-card-admin {
@@ -616,10 +619,6 @@ footer p {
     border-radius: 14px;
     border: 2px solid #22c55e;
     padding: 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    flex-direction: column;
-    gap: 8px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     transition: transform 0.2s ease;
     margin-bottom: 10px;

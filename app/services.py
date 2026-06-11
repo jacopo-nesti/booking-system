@@ -16,7 +16,7 @@
 
 from datetime import datetime, timedelta, date
 from app.config import (OPENING_TIME, CLOSING_TIME, LUNCH_START, LUNCH_END, SLOT_DURATION, CLOSED_DAYS)
-from app.database import get_bookings_by_date
+from app.database import get_bookings_by_date, get_treatment_by_id, execute_query
 
 # controlla se il salone è aperto in una determinata data
 def is_business_open(booking_date):
@@ -55,7 +55,6 @@ def lunch_break(booking_time):
 
 # recupera la durata del trattamento dal database
 def get_treatment_duration(treatment_id):
-    from app.database import get_treatment_by_id
     treatment = get_treatment_by_id(treatment_id)
     # se il trattamento esiste ritorna la durata, altrimenti 0
     return treatment["duration_min"] if treatment else 0
@@ -140,3 +139,53 @@ def get_available_slots(booking_date, treatment_id):
         valid_slots.append(slot)
 
     return valid_slots
+
+
+def get_filtered_bookings(filters):
+    query = """
+        SELECT
+            bookings.id,
+            bookings.user_id,
+            bookings.booking_date,
+            bookings.booking_time,
+            bookings.treatment_id,
+            bookings.interaction_level,
+            users.name,
+            users.surname,
+            users.email
+        FROM bookings
+        JOIN users ON bookings.user_id = users.id
+        JOIN treatments ON bookings.treatment_id = treatments.id
+        WHERE 1=1"""
+
+    params = []
+
+    # 1. Data specifica
+    if filters.get('order_by_specific_date'):
+        query += " AND bookings.booking_date = ?"
+        params.append(filters['order_by_specific_date'])
+
+    # 2. Questa settimana
+    if filters.get('order_for_this_week'):
+        query += " AND strftime('%Y-%W', bookings.booking_date) = strftime('%Y-%W', 'now')"
+
+    # 3. Questo mese
+    if filters.get('order_for_this_month'):
+        query += " AND strftime('%Y-%m', bookings.booking_date) = strftime('%Y-%m', 'now')"
+
+    # 4. Date range
+    if filters.get('order_from_range'):
+        query += " AND bookings.booking_date BETWEEN ? AND ?"
+        params.append(filters['order_from_range'][0])
+        params.append(filters['order_from_range'][1])
+
+    # 5. Filtro per trattamento
+    if filters.get('filter_by_treatment'):
+        query += " AND bookings.treatment_id = ?"
+        params.append(filters['filter_by_treatment'])
+
+    # 6. Ordinamento più recente
+    if filters.get('order_from_most_recent'):
+        query += " ORDER BY bookings.booking_date DESC"
+
+    return execute_query(query, params)

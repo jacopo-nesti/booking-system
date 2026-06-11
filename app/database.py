@@ -232,3 +232,14 @@ def delete_treatment(treatment_id):
 
     conn.commit()
     conn.close()
+
+# esegue una query SQL di lettura (SELECT) in modo sicuro e restituisce i risultati
+def execute_query(query, params=[]):
+    conn = get_db_connection()
+    conn.row_factory = sqlite3.Row
+
+    risultati = conn.execute(query, params).fetchall()
+    conn.close()
+
+    return risultati
+
