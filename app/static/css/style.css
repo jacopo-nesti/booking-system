@@ -746,7 +746,7 @@ body {
 /* Gruppo delle Checkbox */
 .checkbox-group {
     display: flex;
-    gap: 15px;
+    gap: 10px;
     align-items: center;
     background-color: #f8fafc;
     padding: 8px 15px;
@@ -814,17 +814,21 @@ body {
 
 .dashboard-grid-admin {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 15px;
     margin-top: 20px;
 }
 
 .dashboard-card-admin {
+    display: flex;
+    flex-direction: column;
     background-color: #ffffff;
     border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 0.9rem;
+    min-height: 260px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
@@ -834,9 +838,9 @@ body {
 }
 
 .dashboard-card-admin p {
-    margin: 10px 0;
+    margin: 6px 0;
     font-size: 1.0rem;
-    line-height: 1.5;
+    line-height: 1.1;
     color: #4a5568;
 }
 
@@ -851,6 +855,70 @@ body {
     height: 1px;
     background-color: #edf2f7;
     margin: 15px 0;
+}
+
+/* STATUS */
+.status {
+    margin-top: auto;
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status.active {
+    background-color: #e0f2fe;
+    color: #0369a1;
+    border: 1px solid #bae6fd;
+}
+
+.status.completed {
+    background-color: #dcfce7;
+    color: #15803d;
+    border: 1px solid #bbf7d0;
+}
+
+.status.cancelled {
+    background-color: #fee2e2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+}
+
+.select_status_button {
+    width: 100%;
+    padding: 10px 14px;
+    font-weight: 500;
+    color: black;
+    background-color: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.2s ease-in-out;
+    
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234b5563' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    padding-right: 40px;
+}
+
+.select_status_button:hover {
+    border-color: #9ca3af;
+    background-color: #f9fafb;
+}
+
+.select_status_button:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 
 /* STATO VUOTO (Nessun risultato) */

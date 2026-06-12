@@ -186,6 +186,11 @@ def get_filtered_bookings(filters):
         query += " AND bookings.treatment_id = ?"
         params.append(filters['filter_by_treatment'])
 
+    # Filtro per status
+    if filters.get('status'):
+        query += " AND bookings.status = ?"
+        params.append(filters['status'])
+
     # Ordinamento più recente
     if filters.get('order_from_most_recent'):
         query += " ORDER BY bookings.booking_date DESC, bookings.booking_time DESC"

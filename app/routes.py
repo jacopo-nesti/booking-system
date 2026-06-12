@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, session, url_for, flash
-from app.database import get_treatments, get_treatment_by_id, add_bookings, create_user, get_user_by_email, get_user_by_id, get_all_bookings, create_treatment, update_treatment, delete_treatment, get_active_bookings_by_user, get_booking_history_by_user
+from app.database import get_treatments, get_treatment_by_id, add_bookings, create_user, get_user_by_email, get_user_by_id, get_all_bookings
+from app.database import create_treatment, update_treatment, delete_treatment, get_active_bookings_by_user, get_booking_history_by_user, auto_update_booking_status
 from app.services import get_available_slots, get_filtered_bookings
 from app.auth import (hash_password, verify_password, validate_password, validate_email)
 from app.config import (PASSWORD_ERROR)
@@ -187,6 +188,8 @@ def logout_page():
 @main.route("/dashboard")
 @login_required
 def dashboard_page():
+    auto_update_booking_status()
+
     user_id = session["user_id"]
 
     user = get_user_by_id(user_id)
@@ -203,11 +206,14 @@ def dashboard_page():
 @main.route("/admin/dashboard")
 @admin_required
 def admin_dashboard():
+    auto_update_booking_status()
+    
     data_specifica = request.args.get('data_specifica')
     id_trattamento = request.args.get('id_trattamento')
     data_inizio = request.args.get('data_inizio')
     data_fine = request.args.get('data_fine')
 
+    status = request.args.get('status')
     questa_settimana = request.args.get('questa_settimana') == '1'
     questo_mese = request.args.get('questo_mese') == '1'
     piu_recente = request.args.get('piu_recente') == '1'
@@ -218,6 +224,7 @@ def admin_dashboard():
         'order_for_this_month': questo_mese,
         'filter_by_treatment': id_trattamento if id_trattamento else None,
         'order_from_most_recent': piu_recente,
+        'status': status if status else None,
         'order_from_range': [data_inizio, data_fine] if (data_inizio and data_fine) else None,
     }
 

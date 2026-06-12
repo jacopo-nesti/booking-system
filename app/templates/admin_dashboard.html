@@ -36,6 +36,30 @@
         <input type="number" id="id_trattamento" name="id_trattamento" placeholder="Es. 3" value="{{ request.args.get('id_trattamento', '') }}">
         
         <div class="checkbox-group">
+
+            <label for="status">Stato:</label>
+
+            <select class="select_status_button" name="status" id="status">
+
+                <option value="">Tutti</option>
+
+                <option value="active"
+                    {% if request.args.get('status') == 'active' %}selected{% endif %}>
+                    Attive
+                </option>
+
+                <option value="completed"
+                    {% if request.args.get('status') == 'completed' %}selected{% endif %}>
+                    Completate
+                </option>
+
+                <option value="cancelled"
+                    {% if request.args.get('status') == 'cancelled' %}selected{% endif %}>
+                    Cancellate
+                </option>
+
+            </select>
+
             <label>
                 <input type="checkbox" name="questa_settimana" value="1" {% if request.args.get('questa_settimana') == '1' %}checked{% endif %}>
                 Questa settimana
@@ -65,16 +89,26 @@
 
         <div class="dashboard-card-admin">
 
-            <p><strong>Nome:</strong> {{ b.name }}</p>
-            <p><strong>Cognome:</strong> {{ b.surname }}</p>
+            <p><strong>Cliente:</strong> {{ b.name }} {{ b.surname }}</p>
             <p><strong>Email:</strong> {{ b.email }}</p>
 
             <p><strong>Data:</strong> {{ b.booking_date }}</p>
             <p><strong>Ora:</strong> {{ b.booking_time }}</p>
 
-            <p><strong>Trattamento ID:</strong> {{ b.treatment_id }}</p>
-            <p><strong>Tipologia:</strong> {{ b.service_name }}</p>
+            <p><strong>Trattamento:</strong> {{ b.service_name }}</p>
             <p><strong>Interazione:</strong> {{ b.interaction_level }}</p>
+
+            <div class="status">
+
+                {% if b.status == "active" %}
+                    <span class="status active">In corso</span>
+                {% elif b.status == "completed" %}
+                    <span class="status completed">Completata</span>
+                {% else %}
+                    <span class="status cancelled">Cancellata</span>
+                {% endif %}
+
+            </div>
 
         </div>
 

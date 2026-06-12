@@ -1,6 +1,6 @@
 import sqlite3
 import os
-from datetime import date
+from datetime import date, datetime
 
 
 # creo directory e app.db se non esistono
@@ -283,3 +283,19 @@ def get_booking_history_by_user(user_id):
     conn.close()
 
     return [dict(row) for row in rows]
+
+# Funzione aggiornamento automatico delle prenotazioni
+def auto_update_booking_status():
+    conn = get_db_connection()
+
+    today = date.today().isoformat()
+
+    conn.execute("""
+        UPDATE bookings
+        SET status = 'completed'
+        WHERE booking_date < ?
+        AND status = 'active'
+    """, (today,))
+
+    conn.commit()
+    conn.close()
