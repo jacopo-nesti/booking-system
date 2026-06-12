@@ -12,22 +12,41 @@ Dashboard
         <h1>Benvenuto {{ user.name }}</h1>
     </div>
 
-    <h2 class="dashboard-title">Le tue prenotazione</h2>
+    <h2 class="dashboard-title">Prossimi appuntamenti</h2>
 
-    {% if bookings %}
+    {% if active_bookings %}
 
         <div class="dashboard-grid">
-            {% for b in bookings %}
-            <div class="dashboard-card">
+            {% for b in active_bookings %}
+                <div class="dashboard-card">
                     <strong>{{ b.booking_date }} - {{ b.booking_time }}</strong>
                     <strong>Trattamento: {{ b.service_name }}</strong>
                     <div>Interazione selezionata: {{ b.interaction_level }}</div>
-            </div>
+                </div>
             {% endfor %}
         </div>
     {% else %}
 
-        <p class="dashboard-empty">Non hai ancora prenotazioni.</p>
+        <p class="dashboard-empty">Nessun appuntamento futuro.</p>
+
+    {% endif %}
+
+    <h2 class="dashboard-title">Storico appuntamenti</h2>
+
+    {% if booking_history %}
+
+        <div class="dashboard-grid">
+            {% for b in booking_history %}
+                <div class="history-card">
+                    <strong>{{ b.booking_date }} - {{ b.booking_time }}</strong>
+                    <strong>Trattamento: {{ b.service_name }}</strong>
+                    <div>Interazione selezionata: {{ b.interaction_level }}</div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+
+        <p class="dashboard-empty">Nessun appuntamento completato.</p>
 
     {% endif %}
 

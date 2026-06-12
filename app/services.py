@@ -150,9 +150,11 @@ def get_filtered_bookings(filters):
             bookings.booking_time,
             bookings.treatment_id,
             bookings.interaction_level,
+            bookings.status,
             users.name,
             users.surname,
-            users.email
+            users.email,
+            treatments.service_name
         FROM bookings
         JOIN users ON bookings.user_id = users.id
         JOIN treatments ON bookings.treatment_id = treatments.id

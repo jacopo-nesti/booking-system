@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, session, url_for, flash
-from app.database import get_treatments, get_treatment_by_id, add_bookings, create_user, get_user_by_email, get_bookings_by_user, get_user_by_id, get_all_bookings, create_treatment, update_treatment, delete_treatment
+from app.database import get_treatments, get_treatment_by_id, add_bookings, create_user, get_user_by_email, get_user_by_id, get_all_bookings, create_treatment, update_treatment, delete_treatment, get_active_bookings_by_user, get_booking_history_by_user
 from app.services import get_available_slots, get_filtered_bookings
 from app.auth import (hash_password, verify_password, validate_password, validate_email)
 from app.config import (PASSWORD_ERROR)
@@ -190,12 +190,14 @@ def dashboard_page():
     user_id = session["user_id"]
 
     user = get_user_by_id(user_id)
-    bookings = get_bookings_by_user(user_id)
+    active_bookings = get_active_bookings_by_user(user_id)
+    booking_history = get_booking_history_by_user(user_id)
     
     return render_template(
         "dashboard.html",
         user=user,
-        bookings=bookings
+        active_bookings=active_bookings,
+        booking_history=booking_history
     )
 
 @main.route("/admin/dashboard")

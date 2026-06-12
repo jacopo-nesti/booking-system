@@ -1,5 +1,6 @@
 import sqlite3
 import os
+from datetime import date
 
 
 # creo directory e app.db se non esistono
@@ -44,6 +45,7 @@ def init_db():
         booking_time TEXT NOT NULL,
         treatment_id INTEGER NOT NULL,
         interaction_level TEXT,
+        status TEXT NOT NULL DEFAULT 'active',
                    
         FOREIGN KEY (user_id) REFERENCES users(id),
         FOREIGN KEY (treatment_id) REFERENCES treatments(id)
@@ -149,25 +151,6 @@ def get_user_by_id(user_id):
         return dict(row)
     return None
 
-# funzione prenotazioni utente
-def get_bookings_by_user(user_id):
-    conn = get_db_connection()
-
-    rows = conn.execute("""
-        SELECT
-            bookings.*,
-            treatments.service_name
-        FROM bookings
-        JOIN treatments
-            ON bookings.treatment_id = treatments.id
-        WHERE bookings.user_id = ?
-        ORDER BY bookings.booking_date, bookings.booking_time
-    """, (user_id,)).fetchall()
-    
-    conn.close()
-
-    return [dict(row) for row in rows]
-
 # funzione GET all bookings
 def get_all_bookings():
     conn = get_db_connection()
@@ -177,13 +160,15 @@ def get_all_bookings():
             bookings.*,
             users.name,
             users.surname,
-            users.email
+            users.email,
+            treatments.service_name
         FROM bookings
         JOIN users ON bookings.user_id = users.id
+        JOIN treatments ON bookings.treatment_id = treatments.id
         ORDER BY booking_date DESC, booking_time DESC
     """).fetchall()
 
-    conn.close
+    conn.close()
     
     return [dict(row) for row in rows]
 
@@ -249,7 +234,52 @@ def execute_query(query, params=[]):
     conn = get_db_connection()
     conn.row_factory = sqlite3.Row
 
-    risultati = conn.execute(query, params).fetchall()
+    rows = conn.execute(query, params).fetchall()
     conn.close()
 
-    return risultati
+    return [dict(row) for row in rows]
+
+# aggiornamento automatico delle prenotazioni
+def get_active_bookings_by_user(user_id):
+    conn = get_db_connection()
+
+    today = date.today().isoformat()
+
+    rows = conn.execute("""
+        SELECT 
+            bookings.*,
+            treatments.service_name
+        FROM bookings
+        JOIN treatments
+            ON bookings.treatment_id = treatments.id
+        WHERE bookings.user_id = ?
+        AND bookings.status = 'active'
+        AND bookings.booking_date >= ?
+        ORDER BY bookings.booking_date, bookings.booking_time
+    """, (user_id, today)).fetchall()
+
+    conn.close()
+
+    return [dict(row) for row in rows]
+
+# funzione storico prenotazioni
+def get_booking_history_by_user(user_id):
+    conn = get_db_connection()
+
+    today = date.today().isoformat()
+
+    rows = conn.execute("""
+        SELECT
+            bookings.*,
+            treatments.service_name
+        FROM bookings
+        JOIN treatments
+            ON bookings.treatment_id = treatments.id
+        WHERE bookings.user_id = ?
+        AND bookings.booking_date < ?
+        ORDER BY bookings.booking_date DESC
+    """, (user_id, today)).fetchall()
+
+    conn.close()
+
+    return [dict(row) for row in rows]
