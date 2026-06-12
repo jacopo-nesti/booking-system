@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, session, url_for
+from flask import Blueprint, render_template, request, redirect, session, url_for, flash
 from app.database import get_treatments, get_treatment_by_id, add_bookings, create_user, get_user_by_email, get_bookings_by_user, get_user_by_id, get_all_bookings, create_treatment, update_treatment, delete_treatment
 from app.services import get_available_slots, get_filtered_bookings
 from app.auth import (hash_password, verify_password, validate_password, validate_email)
@@ -285,7 +285,10 @@ def edit_treatment_page(treatment_id):
 @main.route("/admin/treatments/delete/<int:treatment_id>", methods=["POST"])
 @admin_required
 def delete_treatment_page(treatment_id):
-
-    delete_treatment(treatment_id)
+    
+    if delete_treatment(treatment_id):
+        flash(f"Trattamento eliminato con successo!", "success")
+    else:
+        flash(f"Impossibile eliminare il trattamento: ci sono prenotazione attive associate a questo ID!", "danger")
 
     return redirect("/admin/treatments")

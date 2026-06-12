@@ -224,14 +224,25 @@ def update_treatment(treatment_id, service_name, duration_min, price, category):
 # funzione admin DELETE TREATMENT
 def delete_treatment(treatment_id):
     conn = get_db_connection()
+    success = False
 
-    conn.execute("""
-        DELETE FROM treatments
-        WHERE id = ? 
-    """, (treatment_id,))
+    try:
+        conn.execute("""
+            DELETE FROM treatments
+            WHERE id = ? 
+        """, (treatment_id,))
 
-    conn.commit()
-    conn.close()
+        conn.commit()
+        success = True
+
+    except sqlite3.IntegrityError:
+        print(f"Errore: Impossibile eliminare il trattamento {treatment_id} perché ha prenotazioni attive.")
+        success = False
+
+    finally:
+        conn.close()
+    
+    return success
 
 # esegue una query SQL di lettura (SELECT) in modo sicuro e restituisce i risultati
 def execute_query(query, params=[]):
