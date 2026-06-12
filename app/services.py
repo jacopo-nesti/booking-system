@@ -191,10 +191,28 @@ def get_filtered_bookings(filters):
         query += " AND bookings.status = ?"
         params.append(filters['status'])
 
-    # Ordinamento più recente
+    # Ordinamento più recente + visualizzazione prenotazioni con status completato in fondo
     if filters.get('order_from_most_recent'):
-        query += " ORDER BY bookings.booking_date DESC, bookings.booking_time DESC"
+        query += """
+            ORDER BY
+                CASE
+                    WHEN bookings.status = 'active' THEN 0
+                    WHEN bookings.status = 'completed' THEN 1
+                    ELSE 2
+                END,
+                bookings.booking_date DESC,
+                bookings.booking_time DESC
+        """
     else:
-        query += " ORDER BY bookings.booking_date ASC, bookings.booking_time ASC"
+        query += """
+            ORDER BY
+                CASE
+                    WHEN bookings.status = 'active' THEN 0
+                    WHEN bookings.status = 'completed' THEN 1
+                    ELSE 2
+                END,
+                bookings.booking_date ASC,
+                bookings.booking_time ASC
+        """
 
     return execute_query(query, params)
