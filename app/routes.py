@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, session, url_for, flash
 from app.database import get_treatments, get_treatment_by_id, add_bookings, create_user, get_user_by_email, get_user_by_id, get_all_bookings
 from app.database import create_treatment, update_treatment, delete_treatment, get_active_bookings_by_user, get_booking_history_by_user, auto_update_booking_status
+from app.database import get_admin_stats
 from app.services import get_available_slots, get_filtered_bookings
 from app.auth import (hash_password, verify_password, validate_password, validate_email)
 from app.config import (PASSWORD_ERROR)
@@ -207,6 +208,7 @@ def dashboard_page():
 @admin_required
 def admin_dashboard():
     auto_update_booking_status()
+    stats = get_admin_stats()
     
     data_specifica = request.args.get('data_specifica')
     id_trattamento = request.args.get('id_trattamento')
@@ -232,7 +234,8 @@ def admin_dashboard():
 
     return render_template(
         "admin_dashboard.html",
-        bookings=bookings
+        bookings=bookings,
+        stats=stats
         )
 
 @main.route("/admin/treatments")

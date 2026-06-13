@@ -6,6 +6,31 @@
 
 <h1>Dashboard Admin</h1>
 
+<!-- STATISTICHE ADMIN -->
+<div class="stats-grid">
+
+    <div class="stat-card">
+        <h3>Prenotazioni attive</h3>
+        <span>{{ stats.active }}</span>
+    </div>
+
+    <div class="stat-card">
+        <h3>Completate</h3>
+        <span>{{ stats.completed }}</span>
+    </div>
+
+    <div class="stat-card">
+        <h3>Cancellate</h3>
+        <span>{{ stats.cancelled }}</span>
+    </div>
+
+    <div class="stat-card">
+        <h3>Incasso totale</h3>
+        <span>€ {{ stats.revenue }}</span>
+    </div>
+
+</div>
+
 <!-- BOTTONI CRUD -->
 <div class="admin-container">
 

@@ -299,3 +299,42 @@ def auto_update_booking_status():
 
     conn.commit()
     conn.close()
+
+# Funzione statistche avanzate per admin
+def get_admin_stats():
+    conn = get_db_connection()
+
+    active = conn.execute("""
+        SELECT COUNT (*)
+        FROM bookings
+        WHERE status = 'active'
+    """).fetchone()[0]
+
+    completed = conn.execute("""
+        SELECT COUNT (*)
+        FROM bookings
+        WHERE status = 'completed'
+    """).fetchone()[0]
+
+    cancelled = conn.execute("""
+        SELECT COUNT (*)
+        FROM bookings
+        WHERE status = 'cancelled'
+    """).fetchone()[0]
+
+    revenue = conn.execute("""
+        SELECT COALESCE (SUM(t.price), 0)
+        FROM bookings b
+        JOIN treatments t
+            ON treatment_id = t.id
+        WHERE b.status = 'completed' 
+    """).fetchone()[0]
+
+    conn.close()
+
+    return {
+        "active": active,
+        "completed": completed,
+        "cancelled": cancelled,
+        "revenue": revenue
+    }
