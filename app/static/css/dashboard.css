@@ -1,0 +1,47 @@
+/* USER PAGES */
+/* USER DASHBOARD */
+.dashboard-container {
+    padding: 20px;
+}
+
+.dashboard-header {
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.dashboard-header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+.dashboard-title {
+    margin: 10px 0 15px 0;
+    font-size: 1.3rem;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 15px;
+}
+
+.dashboard-card {
+    background: #ffffff;
+    border-radius: 14px;
+    border: 2px solid #22c55e;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-4px);
+}
+
+.dashboard-empty {
+    margin-top: 15px;
+    color: #6b7280;
+}
