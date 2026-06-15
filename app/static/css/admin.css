@@ -122,7 +122,6 @@
     transform: scale(0.98);
 }
 
-/* Variante per il tasto Resetta (Grigio) */
 .admin-dashboard-btn.btn-reset {
     background-color: #64748b;
     padding: 8px 25px;
@@ -256,7 +255,7 @@
     margin: 0;
 }
 
-/* ADMIN CREATE TREATMENT */
+/* ADMIN CREATE AND UPDATE TREATMENT */
 .title-create {
     display: flex;
     flex-direction: column;
@@ -264,8 +263,14 @@
     text-align: left;
 }
 
+.title-create h1 {
+  font-size: 2rem;
+  margin-bottom: 5px; 
+}
+
 .title-create h2 {
-    margin-bottom: -20px;
+    color: #666;
+    margin-bottom: 0;
 }
 
 .create-treatment-container {
@@ -279,16 +284,19 @@
 }
 
 .create-treatment-container p {
-    margin-top: 25px;
     font-size: 1.0rem;
     margin-bottom: 5px;
-    margin-top: 15px;
+    margin-top: 12px;
+}
+
+.creat-treatment-card p:first-child {
+    margin-top: 0;
 }
 
 .create-treatment-container input {
     font-size: 1.0rem;
     background-color: white;
-    padding: 14px;
+    padding: 16px;
     border: 1px solid #22c55e;    
     border-radius: 8px;
     color: black;
@@ -303,8 +311,8 @@
     font-weight: bold;
     background-color: #5aaa5a;
     padding: 10px;
-    width: 200px;
-    border: 1px solid #22c55e;
+    width: 100%;
+    border: 1px solid black;
     color: black;
     border-radius: 8px;
     cursor: pointer;
@@ -317,14 +325,6 @@
 }
 
 /* ADMIN EDIT AND DELETE TREATMENTS */
-.title-create {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-    margin-bottom: 30px;
-}
-
 .edit-or-delete-treatment-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
