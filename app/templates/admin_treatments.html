@@ -7,7 +7,7 @@
 <div class="title-create">
     <h1>Dashboard Admin</h1>
 
-    <h2>Modifica / Elimina un trattamento</h2>
+    <h2>Modifica o elimina un trattamento</h2>
 </div>
 
 <div class="flash-messages-container">
@@ -28,12 +28,12 @@
         <div class="admin-treatment-card">
 
             <h3>{{ t.service_name }}</h3>
-            <p>ID: {{ t.id }} </p>
-            <p>Durata: {{ t.duration_min }} min</p>
-            <p>Prezzo: {{ t.price }} €</p>
-            <p>Categoria: {{ t.category }}</p>
+            <p><strong>ID:</strong> {{ t.id }} </p>
+            <p><strong>Durata:</strong> {{ t.duration_min }} min</p>
+            <p><strong>Prezzo:</strong> {{ t.price }} €</p>
+            <p><strong>Categoria:</strong> {{ t.category }}</p>
 
-            <a href="/admin/treatments/edit/{{ t.id }}">Modifica</a>
+            <a href="/admin/treatments/edit/{{ t.id }}" class="button-edit">Modifica</a>
 
             <form method="POST" action="/admin/treatments/delete/{{ t.id }}"
                 onsubmit="return confirm('Sei sicuro di voler eliminare questo trattamento? Questa azione è irreversibile.');">
@@ -47,5 +47,16 @@
     {% endfor %}
 
 </div>
+
+<!-- Timeout alert delete treatment -->
+<script>
+    setTimeout(() => {
+        document.querySelectorAll('.alert').forEach(el => {
+            el.style.transition = 'opacity 0.5s ease';
+            el.style.opacity = '0';
+            setTimeout(() => el.remove(), 500);
+        });
+    }, 4000);
+</script>
 
 {% endblock %}

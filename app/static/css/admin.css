@@ -1,15 +1,16 @@
 /* ADMIN DASHBOARD */
-/* STATISTICHE ADMIN */
+/* Statistiche admin */
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     margin-bottom: 15px;
     margin-top: 8px;
+    margin-right: 10px;
     background-color: #ffffff;
     border: 1px solid #e2e8f0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     border-radius: 8px;
-    padding: 10px;
+    gap: 15px;
 }
 
 .stat-card {
@@ -19,13 +20,14 @@
 }
 
 .stat-card h3 {
-    margin-bottom: 10px;
     font-size: 1rem;
+    color: #334155;
 }
 
 .stat-card span {
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: bold;
+    color: #334155;
 }
 
 /* CONTENITORI (Sezione CRUD e Sezione Filtri) */
@@ -33,12 +35,13 @@
     background-color: #ffffff;
     border: 1px solid #e2e8f0;
     border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 30px;
+    padding: 15px;
+    margin-bottom: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin-right: 10px;
 }
 
-/* Layout del Form dei Filtri */
+/* Layout Filtri/Ordinamento */
 .admin-container form {
     display: flex;
     flex-wrap: wrap;
@@ -48,8 +51,8 @@
 
 /* Stile delle Label e degli Input */
 .admin-container label {
-    font-weight: 600;
-    font-size: 0.9rem;
+    font-weight: 700;
+    font-size: 0.8rem;
     color: #4a5568;
 }
 
@@ -57,27 +60,27 @@
 .admin-container input[type="number"] {
     padding: 8px 12px;
     border: 1px solid #cbd5e1;
-    border-radius: 5px;
-    font-size: 0.9rem;
+    border-radius: 8px;
     color: #334155;
     background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .admin-container input:focus {
     outline: none;
     border-color: green;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 /* Gruppo delle Checkbox */
 .checkbox-group {
     display: flex;
-    gap: 10px;
+    gap: 15px;
     align-items: center;
     background-color: #f8fafc;
-    padding: 8px 15px;
-    border-radius: 6px;
+    padding: 15px;
+    border-radius: 8px;
     border: 1px solid #e2e8f0;
 }
 
@@ -98,16 +101,17 @@
 /* BOTTONI */
 .admin-dashboard-btn {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 8px 25px;
     background-color: #5aaa5a;
     color: #ffffff;
     text-decoration: none;
-    font-size: 1.0rem;
+    font-size: 0.9rem;
     font-weight: 500;
-    border-radius: 6px;
+    border-radius: 8px;
     border: none;
     cursor: pointer;
     transition: background-color 0.2s, transform 0.1s;
+    margin-right: 10px;
 }
 
 .admin-dashboard-btn:hover {
@@ -121,27 +125,23 @@
 /* Variante per il tasto Resetta (Grigio) */
 .admin-dashboard-btn.btn-reset {
     background-color: #64748b;
+    padding: 8px 25px;
 }
 
 .admin-dashboard-btn.btn-reset:hover {
     background-color: #475569;
 }
 
-/* Spaziatura specifica per i bottoni CRUD all'inizio */
-.admin-container .admin-dashboard-btn {
-    margin-right: 10px;
-}
-
 /* GRIGLIA E CARD DELLE PRENOTAZIONI */
 .dashboard-title-admin {
-    margin-top: 40px;
-    border-bottom: 2px solid #e2e8f0;
-    padding-bottom: 10px;
+    margin-top: 30px;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 8px;
 }
 
 .dashboard-grid-admin {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 15px;
     margin-top: 20px;
 }
@@ -151,37 +151,29 @@
     flex-direction: column;
     background-color: #ffffff;
     border: 1px solid #e2e8f0;
-    border-radius: 10px;
+    border-radius: 8px;
     padding: 12px;
     font-size: 0.9rem;
     min-height: 260px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .dashboard-card-admin:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 .dashboard-card-admin p {
     margin: 6px 0;
     font-size: 1.0rem;
     line-height: 1.1;
-    color: #4a5568;
+    color: #475569;
 }
 
 .dashboard-card-admin strong {
     color: #1a202c;
     font-weight: 600;
-}
-
-/* Linee di divisione interne alla card */
-.dashboard-card-admin hr {
-    border: 0;
-    height: 1px;
-    background-color: #edf2f7;
-    margin: 15px 0;
 }
 
 /* STATUS */
@@ -244,15 +236,15 @@
 }
 
 .select_status_button:focus {
-    border-color: #2563eb;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    border-color: green;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 /* STATO VUOTO (Nessun risultato) */
 .no-results {
     grid-column: 1 / -1; 
     background-color: #f8fafc;
-    border: 2px dashed #cbd5e1;
+    border: 1px dashed #cbd5e1;
     border-radius: 8px;
     padding: 40px;
     text-align: center;
@@ -270,7 +262,10 @@
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
-    margin-bottom: -15px;
+}
+
+.title-create h2 {
+    margin-bottom: -20px;
 }
 
 .create-treatment-container {
@@ -278,9 +273,8 @@
     flex-direction: column;
     gap: 12px;
     padding: 12px 5px;
-    font-weight: 600;
+    font-weight: 500;
     max-width: 700px;
-    margin-left: 0;
     margin-right: auto;
 }
 
@@ -288,13 +282,14 @@
     margin-top: 25px;
     font-size: 1.0rem;
     margin-bottom: 5px;
+    margin-top: 15px;
 }
 
 .create-treatment-container input {
     font-size: 1.0rem;
     background-color: white;
     padding: 14px;
-    border: 2px solid #22c55e;    
+    border: 1px solid #22c55e;    
     border-radius: 8px;
     color: black;
     cursor: pointer;
@@ -307,9 +302,9 @@
     margin-top: 20px;
     font-weight: bold;
     background-color: #5aaa5a;
-    padding: 14px;
+    padding: 10px;
     width: 200px;
-    border: none;
+    border: 1px solid #22c55e;
     color: black;
     border-radius: 8px;
     cursor: pointer;
@@ -327,56 +322,96 @@
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
-    margin-bottom: 5px;
+    margin-bottom: 30px;
 }
 
 .edit-or-delete-treatment-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-    padding: 12px 5px;
-    font-weight: 600;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
 }
 
 .admin-treatment-card {
-    background: #ffffff;
-    border-radius: 14px;
-    border: 2px solid #22c55e;
-    padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    transition: transform 0.2s ease;
+    background-color: #ffffff;
+    border: 2px solid lightgray;
+    border-radius: 8px;
+    min-height: 260px;
+    padding: 12px;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.admin-treatment-card a {
-    text-decoration: underline;
-    color: blue;
-    font-weight: 700;
-    transition: 0.3s;
-    font-size: 1.0rem;
+.admin-treatment-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
-.admin-treatment-card a:hover {
-    color: green;
+.button-edit {
+    font-size: 0.9rem;
+    background-color: rgb(104, 222, 248);
+    padding: 3.5%;
+    width: 120px;
+    border: none;
+    color: black;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    display: block;
+    margin-top: auto;
+    text-align: center;
+    margin-bottom: 8px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.button-edit:hover {
+    background-color: rgb(72, 72, 199);
+    text-decoration: none;
+    color: white !important;
 }
 
 .admin-treatment-card button {
-    font-size: 1.0rem;
-    font-weight: bold;
-    background-color: lightcoral;
-    padding: 14px;
-    width: 200px;
+    font-size: 0.9rem;
+    background-color: rgb(238, 156, 156);
+    padding: 5%;
+    width: 120px;
     border: none;
+    font-weight: 600;
     color: black;
     border-radius: 8px;
     cursor: pointer;
     display: block;
+    margin-top: auto;
+    transition: background-color 0.2s ease;
 }
 
 .admin-treatment-card button:hover {
-    background-color: red;
+    background-color: rgb(225, 43, 43);
+    transition: 0.2s;
+    color: white !important;
+}
+
+.admin-treatment-card h3 {
+    margin: 6px 0;
+    font-size: 1.0rem;
+    line-height: 1.1;
+    color: black;
+}
+
+.admin-treatment-card p {
+    margin: 6px 0;
+    font-size: 1.0rem;
+    line-height: 1.1;
+    color: #475569;
+}
+
+.admin-treatment-card strong {
+    color: #1a202c;
+    font-weight: 600;
 }
 
 .alert {
@@ -400,12 +435,11 @@
 }
 
 /* ADMIN SPECIFIC EDIT TREATMENTS */
-.title-edit-create {
+/* .title-edit-create {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
-    margin-bottom: 20px;
 }
 
 .edit-treatment-container {
@@ -418,29 +452,29 @@
 }
 
 .edit-treatment-card {
-    font-size: 1.0rem;
+    font-size: 0.9rem;
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
 .edit-treatment-card input {
-    font-size: 1.0rem;
+    font-size: 0.9rem;
     background-color: white;
-    padding: 14px;
-    border: 2px solid #22c55e;
+    padding: 12px;
+    border: 2px solid green;
     border-radius: 8px;
     color: black;
     text-decoration: none;
-    width: 100%;
+    width: 80%;
 }
 
 .edit-treatment-card button {
-    font-size: 1.0rem;
-    margin-top: 20px;
+    font-size: 0.9rem;
+    margin-top: 15px;
     font-weight: bold;
-    background-color: #a5e1a5;
-    padding: 14px;
+    background-color: #5aaa5a;
+    padding: 10px;
     width: 200px;
     border: none;
     color: black;
@@ -452,4 +486,4 @@
 
 .edit-treatment-card button:hover {
     background-color: green;
-}
+} */
