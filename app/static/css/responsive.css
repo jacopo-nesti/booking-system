@@ -1,3 +1,215 @@
 /* RESPONSIVE */
-/* Nessuna media query presente nel CSS originale.
-   Aggiungere qui le regole @media per breakpoint mobile/tablet. */
+
+/* ── GLOBAL ── */
+@media (max-width: 768px) {
+    #page-container {
+        padding: 1rem;
+    }
+}
+
+/* ── NAVBAR ── */
+@media (max-width: 768px) {
+    #app-header {
+        padding: 0 1rem;
+        height: auto;
+        flex-wrap: wrap;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+
+    .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .navbar {
+        flex-wrap: wrap;
+        gap: 0.15rem;
+    }
+
+    .navbar a {
+        font-size: 13px;
+        padding: 4px 8px;
+    }
+
+    .welcome {
+        font-size: 11px;
+    }
+}
+
+
+/* ── HOME ── */
+@media (max-width: 768px) {
+    .hero {
+        padding: 2rem 1rem 0;
+    }
+
+    .hero h1 {
+        font-size: 26px;
+    }
+
+    .info-section {
+        grid-template-columns: 1fr;
+    }
+
+    .info-box {
+        padding: 1.5rem 1rem;
+    }
+
+    /* Contatti */
+    .contact-container {
+        padding: 12px;
+    }
+
+    .social-icons {
+        gap: 15px;
+    }
+}
+
+
+/* ── BOOKING ── */
+@media (max-width: 768px) {
+    .card-container {
+        grid-template-columns: 1fr;
+        margin: 20px auto;
+    }
+
+    .data-section {
+        font-size: 16px;
+    }
+
+    .slots-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .booking-title {
+        font-size: 1.4rem;
+    }
+
+    .booking-date,
+    .booking-time {
+        font-size: 1.1rem;
+    }
+
+    .success-container {
+        padding: 12px;
+        font-size: 1rem;
+    }
+
+    .success-container button {
+        font-size: 1.1rem;
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .slots-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* ── DASHBOARD UTENTE ── */
+@media (max-width: 768px) {
+    .dashboard-container {
+        padding: 12px;
+    }
+
+    .dashboard-header h1 {
+        font-size: 1.4rem;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* ── FORMS (Login / Register / Booking form) ── */
+@media (max-width: 768px) {
+    .booking-form {
+        max-width: 100%;
+    }
+
+    .login-container input:focus,
+    .register-container input:focus {
+        transform: none;
+    }
+
+    .login-container input,
+    .register-container input {
+        width: 100%;
+        padding: 14px 18px;
+    }
+
+    .login-container button,
+    .register-container button {
+        width: 100%;
+        font-size: 1.1rem;
+    }
+
+    .login-title,
+    .register-title {
+        font-size: 1.4rem;
+    }
+}
+
+
+/* ── ADMIN ── */
+@media (max-width: 768px) {
+    /* Stats: 4 colonne → 2 colonne */
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        margin-right: 0;
+    }
+
+    .admin-container {
+        margin-right: 0;
+        padding: 12px;
+    }
+
+    /* Filtri in colonna */
+    .admin-container form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .checkbox-group {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    /* Bottoni admin: larghezza piena */
+    .admin-dashboard-btn {
+        width: 100%;
+        text-align: center;
+        margin-right: 0;
+        margin-bottom: 8px;
+    }
+
+    /* Card prenotazioni admin */
+    .dashboard-grid-admin {
+        grid-template-columns: 1fr;
+    }
+
+    /* Card trattamenti admin */
+    .edit-or-delete-treatment-container {
+        grid-template-columns: 1fr;
+    }
+
+    .create-treatment-container {
+        padding: 8px 0;
+    }
+
+    .btn-selection-create {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
