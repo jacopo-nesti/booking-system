@@ -1,0 +1,435 @@
+/* ADMIN DASHBOARD */
+/* Statistiche admin */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-bottom: 15px;
+    margin-top: 8px;
+    margin-right: 10px;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    gap: 15px;
+}
+
+.stat-card {
+    background: white;
+    padding: 15px;
+    text-align: center;
+}
+
+.stat-card h3 {
+    font-size: 1rem;
+    color: #334155;
+}
+
+.stat-card span {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #334155;
+}
+
+/* CONTENITORI (Sezione CRUD e Sezione Filtri) */
+.admin-container {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin-right: 10px;
+}
+
+/* Layout Filtri/Ordinamento */
+.admin-container form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+}
+
+/* Stile delle Label e degli Input */
+.admin-container label {
+    font-weight: 700;
+    font-size: 0.8rem;
+    color: #4a5568;
+}
+
+.admin-container input[type="date"],
+.admin-container input[type="number"] {
+    padding: 8px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    color: #334155;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.admin-container input:focus {
+    outline: none;
+    border-color: green;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Gruppo delle Checkbox */
+.checkbox-group {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    background-color: #f8fafc;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.checkbox-group input[type="checkbox"] {
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+}
+
+/* BOTTONI */
+.admin-dashboard-btn {
+    display: inline-block;
+    padding: 8px 25px;
+    background-color: #5aaa5a;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    margin-right: 10px;
+}
+
+.admin-dashboard-btn:hover {
+    background-color: green;
+}
+
+.admin-dashboard-btn:active {
+    transform: scale(0.98);
+}
+
+.admin-dashboard-btn.btn-reset {
+    background-color: #64748b;
+    padding: 8px 25px;
+}
+
+.admin-dashboard-btn.btn-reset:hover {
+    background-color: #475569;
+}
+
+/* GRIGLIA E CARD DELLE PRENOTAZIONI */
+.dashboard-title-admin {
+    margin-top: 30px;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 8px;
+}
+
+.dashboard-grid-admin {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.dashboard-card-admin {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 0.9rem;
+    min-height: 260px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.dashboard-card-admin:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.dashboard-card-admin p {
+    margin: 6px 0;
+    font-size: 1.0rem;
+    line-height: 1.1;
+    color: #475569;
+}
+
+.dashboard-card-admin strong {
+    color: #1a202c;
+    font-weight: 600;
+}
+
+/* STATUS */
+.status {
+    margin-top: auto;
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status.active {
+    background-color: #e0f2fe;
+    color: #0369a1;
+    border: 1px solid #bae6fd;
+}
+
+.status.completed {
+    background-color: #dcfce7;
+    color: #15803d;
+    border: 1px solid #bbf7d0;
+}
+
+.status.cancelled {
+    background-color: #fee2e2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+}
+
+.select_status_button {
+    width: 100%;
+    padding: 10px 14px;
+    font-weight: 500;
+    color: black;
+    background-color: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.2s ease-in-out;
+    
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234b5563' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    padding-right: 40px;
+}
+
+.select_status_button:hover {
+    border-color: #9ca3af;
+    background-color: #f9fafb;
+}
+
+.select_status_button:focus {
+    border-color: green;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* STATO VUOTO (Nessun risultato) */
+.no-results {
+    grid-column: 1 / -1; 
+    background-color: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    border-radius: 8px;
+    padding: 40px;
+    text-align: center;
+}
+
+.no-results p {
+    color: #64748b;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+/* ADMIN CREATE AND UPDATE TREATMENT */
+.title-create {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.title-create h1 {
+  font-size: 2rem;
+  margin-bottom: 5px; 
+}
+
+.title-create h2 {
+    color: #666;
+    margin-bottom: 0;
+}
+
+.create-treatment-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px 5px;
+    font-weight: 500;
+    max-width: 700px;
+    margin-right: auto;
+}
+
+.create-treatment-container p {
+    font-size: 1.0rem;
+    margin-bottom: 5px;
+    margin-top: 12px;
+}
+
+.creat-treatment-card p:first-child {
+    margin-top: 0;
+}
+
+.create-treatment-container input {
+    font-size: 1.0rem;
+    background-color: white;
+    padding: 16px;
+    border: 1px solid #22c55e;    
+    border-radius: 8px;
+    color: black;
+    cursor: pointer;
+    text-decoration: none;
+    width: 100%;
+}
+
+.btn-selection-create {
+    font-size: 1.0rem;
+    margin-top: 20px;
+    font-weight: bold;
+    background-color: #5aaa5a;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid black;
+    color: black;
+    border-radius: 8px;
+    cursor: pointer;
+    display: block;
+    margin-left: 0;
+}
+
+.btn-selection-create:hover {
+    background-color: green;
+}
+
+/* ADMIN EDIT AND DELETE TREATMENTS */
+.edit-or-delete-treatment-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.admin-treatment-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border: 2px solid lightgray;
+    border-radius: 8px;
+    min-height: 260px;
+    padding: 12px;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.admin-treatment-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.button-edit {
+    font-size: 0.9rem;
+    background-color: rgb(104, 222, 248);
+    padding: 3.5%;
+    width: 120px;
+    border: none;
+    color: black;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    display: block;
+    margin-top: auto;
+    text-align: center;
+    margin-bottom: 8px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.button-edit:hover {
+    background-color: rgb(72, 72, 199);
+    text-decoration: none;
+    color: white !important;
+}
+
+.admin-treatment-card button {
+    font-size: 0.9rem;
+    background-color: rgb(238, 156, 156);
+    padding: 5%;
+    width: 120px;
+    border: none;
+    font-weight: 600;
+    color: black;
+    border-radius: 8px;
+    cursor: pointer;
+    display: block;
+    margin-top: auto;
+    transition: background-color 0.2s ease;
+}
+
+.admin-treatment-card button:hover {
+    background-color: rgb(225, 43, 43);
+    transition: 0.2s;
+    color: white !important;
+}
+
+.admin-treatment-card h3 {
+    margin: 6px 0;
+    font-size: 1.0rem;
+    line-height: 1.1;
+    color: black;
+}
+
+.admin-treatment-card p {
+    margin: 6px 0;
+    font-size: 1.0rem;
+    line-height: 1.1;
+    color: #475569;
+}
+
+.admin-treatment-card strong {
+    color: #1a202c;
+    font-weight: 600;
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}

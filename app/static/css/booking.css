@@ -1,0 +1,202 @@
+/* SELECTION PAGE */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    max-width: 1200px;
+    margin: 40px auto;
+}
+
+.treatment-card {
+    background: #ffffff;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.2s ease;
+}
+
+.select-btn {
+    display: inline-block;
+    background-color: #5cb85c;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    margin-top: 10px;
+}
+
+.select-btn input[type="radio"] {
+    display: none;
+}
+
+.select-btn:has(input[type="radio"]:checked) {
+    background-color: #1b5e20;
+}
+
+.select-btn:has(input[type="radio"]:checked) .btn-text::before {
+    content: "✓ ";
+}
+
+.treatment-card:has(input[type="radio"]:checked) {
+    border: 3px solid #1b5e20;
+    background-color: rgb(223, 255, 223);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.data-section {
+    margin-top: 16px;
+    font-size: 18px;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.data-section input[type="date"] {
+    padding: 10px;
+    border: 2px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 16px;
+    width: 100%;
+    max-width: 320px;
+}
+
+.btn-selection-availability {
+    background: #5cb85c;
+    padding: 10px 20px;
+    border-radius: 999px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    width: 100%;
+    max-width: 320px;
+}
+
+.btn-selection-availability:hover {
+    background: green;
+    transform: translateY(-2px);
+}
+
+/* PAGINA SLOT DISPONIBILI */
+.availability-section h3 {
+    color: #666;
+    margin-left: 10px;
+}
+.slots-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.slot-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background-color: #ffffff;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #333333;
+    font-weight: bold;
+    transition: all 0.2s ease-in-out;
+}
+
+.slot-time {
+    font-size: 1.3rem;
+    color: black;
+    margin-bottom: 6px;
+}
+
+.slot-action {
+    font-size: 0.85rem;
+    color: black;
+    font-weight: normal;
+}
+
+.slot-card:hover {
+    border: 4px solid #5cb85c;
+    background-color: #f9fbf9;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* BOOK - PAGINA PRENOTAZIONE */
+.booking-title {
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.booking-date,
+.booking-time {
+    font-weight: 500;
+    color: #666;
+    font-size: 1.4rem;
+}
+
+/* INTERAZIONE */
+.interaction-title {
+    font-weight: 500;
+    width: 700px;
+}
+
+.interaction-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 900px;
+}
+
+.interaction-option {
+    line-height: 1.6;
+    cursor: pointer;
+}
+
+.interaction-radio {
+    margin-right: 8px;
+}
+
+/* PAGINA SUCCESS */
+.success-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-weight: bold;
+    background: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.success-container h2 {
+    margin-bottom: 20px;
+}
+
+.success-container p {
+    margin-bottom: 20px;
+}
+
+.success-container button {
+    font-weight: bold;
+    background-color: #5aaa5a;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    color: none;
+    cursor: pointer;
+}
+
+.success-container button:hover {
+    background-color: green;
+}
