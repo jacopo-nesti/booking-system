@@ -29,6 +29,7 @@
     background-color: #5aaa5a;
     color: white;
     cursor: pointer;
+    width: 700px;
 }
 
 .confirm-button:hover {
@@ -52,7 +53,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.8rem;
     font-weight: bold;
 }
 
@@ -76,7 +76,7 @@
     gap: 20px;
     background: #fff;
     border: 1.8px solid #ddd;
-    border-radius: 30px;
+    border-radius: 8px;
     padding: 20px;
     margin-bottom: 20px;
     font-weight: bold;
@@ -142,7 +142,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.8rem;
     font-weight: bold;
 }
 
@@ -163,7 +162,7 @@
     gap: 20px;
     background: #fff;
     border: 1px solid #ddd;
-    border-radius: 30px;
+    border-radius: 8px;
     padding: 20px;
     margin-bottom: 20px;
     font-weight: bold;
