@@ -4,46 +4,62 @@
 booking-system/
 │
 ├── app/
-│   ├── __init__.py              # Flask application factory
-│   ├── config.py                # Configuration (DB path, secret key, etc.)
-│   ├── routes.py                # HTTP routes (Blueprint)
-│   ├── services.py              # Business logic (availability, booking rules)
-│   ├── models.py                # Data models (conceptual / SQL helpers)
-│   ├── database.py             # DB connection, queries, initialization
-│   ├── helpers.py              # Utility functions and decorators
-│   ├── seed.py                 # Database seeding / initial data setup
-│   ├── auth.py                 # Authentication and security logic
+│   ├── __init__.py                # Flask application factory
+│   ├── auth.py                    # Authentication and security logic
+│   ├── config.py                  # Configuration (DB path, secret key, etc.)
+│   ├── database.py                # DB connection, queries, initialization
+│   ├── helpers.py                 # Utility functions and decorators
+│   ├── models.py                  # Data models (conceptual / SQL helpers)
+│   ├── routes.py                  # HTTP routes (Blueprint)
+│   ├── seed.py                    # Database seeding / initial data setup
+│   ├── services.py                # Business logic (availability, booking rules)
 │   │
-│   ├── templates/
-│   │   ├── base.html
-│   │   ├── home.html
-│   │   ├── book.html
-│   │   ├── selection.html
-│   │   ├── availability.html
-│   │   ├── register.html
-│   │   ├── login.html
-│   │   ├── success.html
-│   │   ├── dashboard.html
-│   │   ├── admin_dashboard.html
-│   │   ├── admin_treatments.html
-│   │   ├── create_treatment.html
-│   │   ├── edit_treatment.html
-│   │   └── contacts.html
+│   ├── docs/
+│   │   ├── INSTALLATION.md        # Setup and installation guide
+│   │   ├── ROADMAP.md             # Project roadmap and future steps
+│   │   └── STRUCTURE.md           # Detailed architecture notes
 │   │
 │   ├── static/
 │   │   ├── css/
-│   │   │   └── style.css
+│   │   │   ├── admin.css
+│   │   │   ├── base.css
+│   │   │   ├── booking.css
+│   │   │   ├── dashboard.css
+│   │   │   ├── forms.css
+│   │   │   ├── home.css
+│   │   │   ├── main.css
+│   │   │   ├── navbar.css
+│   │   │   └── responsive.css
+│   │   │  
 │   │   ├── js/
-│   │   │
+│   │   │   
 │   │   └── images/
+│   │       │
+│   │       └── screenshots/
+│   │           ├── preview.gif
+│   │           ├── admin_dashboard.png
+│   │           ├── edit_delete_treatment.png
+│   │           └── new_treatment.png
 │   │
-│   └── docs/
-│       ├── roadmap.md
-│       ├── STRUCTURE.md
-│       └──  INSTALLATION.md  # Setup and installation guide
+│   └── templates/
+│       ├── admin_dashboard.html
+│       ├── admin_treatments.html
+│       ├── availability.html
+│       ├── base.html
+│       ├── book.html
+│       ├── contacts.html
+│       ├── create_treatment.html
+│       ├── dashboard.html
+│       ├── edit_treatment.html
+│       ├── home.html
+│       ├── login.html
+│       ├── register.html
+│       ├── selection.html
+│       └── success.html
 │
-├── run.py                   # Application entry point
-├── requirements.txt         # Project dependencies
+├── .env.example
 ├── .gitignore
-└── README.md
+├── README.md
+├── requirements.txt
+└── run.py                         # Application entry point
 ```

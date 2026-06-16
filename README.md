@@ -2,9 +2,8 @@
 
 ![Python](https://img.shields.io/badge/Python-3.10-blue)
 ![Flask](https://img.shields.io/badge/Flask-web%20framework-black)
-![SQLite](https://img.shields.io/badge/SQLite-07405E?style=for-the-badge)
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Status](https://img.shields.io/badge/status-active-success)
+![SQLite](https://img.shields.io/badge/SQLite-3-003B57)
+![License](https://img.shields.io/badge/license-Proprietary-orange)
 
 ---
 
@@ -14,7 +13,7 @@ This is a full-stack appointment booking web application built with **Flask** fo
 
 It allows users to browse services, select available time slots, and book appointments. The system handles authentication, scheduling, and booking management with a structured workflow that prevents conflicts.
 
-An admin dashboard provides full control over services and bookings, including creation, updates, and deletion of treatments.
+An admin dashboard provides full control over services and bookings, including the creation, update, and deletion of treatments, complemented by advanced filtering and sorting capabilities.
 
 ---
 
@@ -33,7 +32,7 @@ An admin dashboard provides full control over services and bookings, including c
 - Availability scheduling and time slot management
 - Admin dashboard for managing bookings (add new, remove and modify service)
 - Advanced admin filtering for bookings and treatments
-- Responsive UI for desktop use
+- Responsive UI for desktop and mobile use
 
 ---
 
@@ -155,9 +154,11 @@ If you'd like to see my roadmap, see [roadmap](/docs/roadmap.md). The file is in
 - Authentication system (register/login)
 - Admin dashboard for managing bookings and services
 - Advanced admin filtering for bookings and treatments
+- Improve UI for mobile use
+- Automated cleanup/archiving of past bookings
+- Full user booking history
 
 ### V2 (user experience improvements)
-- Full user booking history
 - Email verification and notifications
 - Password recovery system
 - Password manager
@@ -165,7 +166,5 @@ If you'd like to see my roadmap, see [roadmap](/docs/roadmap.md). The file is in
 
 ### V3 (scalability & monetization)
 - Online payment integration
-- Automated cleanup/archiving of past bookings
 - Multi-business / multi-tenant architecture (SaaS evolution)
 - Automated testing suite (unit + integration tests)
-- Improve UI for mobile use
