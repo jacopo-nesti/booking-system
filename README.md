@@ -20,7 +20,7 @@ An admin dashboard provides full control over services and bookings, including c
 
 ## Preview
 
-<img src="/screenshots/preview_login.gif" alt="Project Demo" width="500"/>
+<img src="/screenshots/preview_login.gif" alt="Project Demo" width="1000"/>
 
 ---
 
