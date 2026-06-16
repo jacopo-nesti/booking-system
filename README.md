@@ -69,7 +69,18 @@ For the project structure, refer to the [Structure](/docs/STRUCTURE.md) file.
 
 ## Preview
 
-*Work in progress*
+<details>
+  <summary>Click here to view Admin Panel screenshots</summary>
+  
+  <h4>Main Dashboard</h4>
+  <img src="/screenshots/admin_dashboard.png" alt="Admin Dashboard" width="100%">
+
+  <h4>Add new treatment</h4>
+  <img src="/screenshots/new_treatment.png" alt="Add new treatment" width="100%">
+
+  <h4>Edit or delete an existing treatment</h4>
+  <img src="/screenshots/edit_delete_treatment.png" alt="Edit or delete a treatment" width="100%">
+</details>
 
 ---
 
